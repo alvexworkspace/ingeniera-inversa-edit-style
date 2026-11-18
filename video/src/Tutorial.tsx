@@ -1,279 +1,313 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Audio,
+  Easing,
   Sequence,
   interpolate,
-  spring,
+  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import {sans, serif} from "./fonts";
-import {BLUE, DURATION, LINE, MUTED, NAVY, NAVY_CARD, S, TEXT} from "./theme";
+import {clave, sans} from "./fonts";
+import timeline from "./timeline.json";
 
-const pad = 96;
+const NAVY = "#1B2A4A";
+const MARFIL = "#FFF8EE";
+const CAMEL = "#C19A6B";
+const TEJA = "#E5877E";
+const SALVIA = "#86CFA5";
 
-const rise = (frame: number, fps: number, delay = 0) => {
-  const s = spring({frame: frame - delay, fps, config: {damping: 18, mass: 0.7}});
-  return {
-    opacity: interpolate(frame - delay, [0, 10], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"}),
-    transform: `translateY(${interpolate(s, [0, 1], [36, 0])}px)`,
-  };
+type Word = {t: string; start: number; end: number};
+type Scene = {
+  id: string;
+  say: string;
+  key: string;
+  visual: string;
+  start: number;
+  end: number;
+  words: Word[];
 };
 
-const Chrome: React.FC<{children: React.ReactNode}> = ({children}) => {
-  const frame = useCurrentFrame();
-  const progress = frame / (DURATION - 1);
-  return (
-    <AbsoluteFill style={{background: NAVY, fontFamily: sans, color: TEXT}}>
+const SCENES = timeline.scenes as Scene[];
+
+const norm = (s: string) =>
+  s
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "");
+
+const Grid: React.FC = () => (
+  <AbsoluteFill
+    style={{
+      backgroundImage:
+        "linear-gradient(rgba(255,248,238,0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(255,248,238,0.09) 1px, transparent 1px), linear-gradient(rgba(255,248,238,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,248,238,0.04) 1px, transparent 1px)",
+      backgroundSize: "120px 120px, 120px 120px, 24px 24px, 24px 24px",
+    }}
+  />
+);
+
+const Palabra: React.FC<{text: string; on: boolean; local: number}> = ({text, on, local}) => {
+  const p = interpolate(local, [0, 11], [0, 1], {
+    easing: Easing.out(Easing.exp),
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  if (on) {
+    return (
       <div
         style={{
-          position: "absolute",
-          width: 720,
-          height: 720,
-          right: -180,
-          top: -220,
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(46,112,240,0.28) 0%, rgba(46,112,240,0) 68%)",
-          transform: `translate(${Math.sin(frame / 40) * 18}px, ${Math.cos(frame / 50) * 12}px)`,
+          display: "inline-block",
+          background: MARFIL,
+          color: NAVY,
+          fontFamily: clave,
+          fontStyle: "italic",
+          fontWeight: 400,
+          fontSize: text.length > 10 ? 72 : 108,
+          lineHeight: 0.95,
+          padding: "8px 28px 16px",
+          opacity: p,
+          filter: `blur(${(1 - p) * 16}px)`,
+          transform: `translateY(${(1 - p) * 28}px)`,
+          clipPath: `inset(0 ${(1 - p) * 100}% 0 0)`,
         }}
-      />
-      <div style={{position: "absolute", top: 48, left: pad, fontWeight: 800, fontSize: 28, letterSpacing: -0.4}}>
-        Picasso's RED
+      >
+        {text}
       </div>
-      <AbsoluteFill style={{padding: `${pad + 36}px ${pad}px ${pad}px`}}>{children}</AbsoluteFill>
-      <div style={{position: "absolute", left: pad, right: pad, bottom: 42, height: 4, background: LINE, borderRadius: 4}}>
-        <div style={{width: `${progress * 100}%`, height: "100%", background: BLUE, borderRadius: 4}} />
+    );
+  }
+  return (
+    <div
+      style={{
+        fontFamily: sans,
+        fontWeight: 800,
+        fontSize: 72,
+        letterSpacing: -2,
+        color: MARFIL,
+        opacity: p,
+        filter: `blur(${(1 - p) * 10}px)`,
+        transform: `translateY(${(1 - p) * 22}px)`,
+      }}
+    >
+      {text}
+    </div>
+  );
+};
+
+const Sub: React.FC<{scene: Scene; time: number}> = ({scene, time}) => {
+  const dichos = scene.words.filter((w) => w.start <= time + 0.02);
+  const linea = dichos.map((w) => w.t).join(" ");
+  if (!linea) return null;
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: 120,
+        right: 120,
+        bottom: 78,
+        textAlign: "center",
+        fontFamily: sans,
+        fontWeight: 600,
+        fontSize: 40,
+        color: "#FFFFFF",
+        lineHeight: 1.15,
+      }}
+    >
+      {linea}
+    </div>
+  );
+};
+
+const Ficha: React.FC<{title: string; body: string; on: boolean}> = ({title, body, on}) => (
+  <div
+    style={{
+      flex: 1,
+      background: on ? MARFIL : "#243656",
+      color: on ? NAVY : MARFIL,
+      borderRadius: 28,
+      padding: "36px 32px",
+      minHeight: 280,
+    }}
+  >
+    <div style={{fontFamily: clave, fontStyle: "italic", fontSize: 64, lineHeight: 1}}>{title}</div>
+    <div style={{marginTop: 18, fontFamily: sans, fontWeight: 600, fontSize: 32, lineHeight: 1.25}}>{body}</div>
+  </div>
+);
+
+const Mock: React.FC<{scene: Scene; time: number}> = ({scene, time}) => {
+  const local = time - scene.start;
+  if (scene.visual === "two") {
+    const red = scene.id !== "edita";
+    return (
+      <div style={{display: "flex", gap: 28, width: 1500, marginTop: 24}}>
+        <Ficha title="RED" body="Aprende el estilo." on={red} />
+        <Ficha title="Oficio" body="Edita con ese estilo." on={!red} />
+      </div>
+    );
+  }
+  if (scene.visual === "formats" || scene.visual === "ask") {
+    const opciones = ["Reel", "YouTube", "Sin cara", "Motion", "Tutorial", "Anuncio", "Clase"];
+    return (
+      <div style={{display: "flex", flexWrap: "wrap", gap: 16, width: 1500, justifyContent: "center"}}>
+        {opciones.map((op, i) => (
+          <div
+            key={op}
+            style={{
+              fontFamily: sans,
+              fontWeight: 800,
+              fontSize: 40,
+              padding: "18px 28px",
+              borderRadius: 18,
+              background: i === Math.min(opciones.length - 1, Math.floor(local * 2)) ? MARFIL : "#243656",
+              color: i === Math.min(opciones.length - 1, Math.floor(local * 2)) ? NAVY : MARFIL,
+            }}
+          >
+            {op}
+          </div>
+        ))}
+      </div>
+    );
+  }
+  if (scene.visual === "safe") {
+    return (
+      <div style={{display: "flex", gap: 48, alignItems: "center"}}>
+        <div style={{width: 280, height: 498, border: `3px solid ${MARFIL}`, borderRadius: 24, position: "relative"}}>
+          <div style={{position: "absolute", left: 0, right: 0, top: 0, height: 70, background: TEJA, opacity: 0.85}} />
+          <div style={{position: "absolute", left: 0, right: 0, bottom: 0, height: 78, background: TEJA, opacity: 0.85}} />
+          <div style={{position: "absolute", inset: "90px 24px auto", color: MARFIL, fontFamily: sans, fontWeight: 700, fontSize: 28}}>
+            9:16
+          </div>
+        </div>
+        <div style={{width: 640, height: 360, border: `3px solid ${MARFIL}`, borderRadius: 24, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: sans, fontWeight: 800, fontSize: 42, color: MARFIL}}>
+          16:9
+        </div>
+      </div>
+    );
+  }
+  if (scene.visual === "canvas") {
+    const grupos = ["Gancho", "Subtítulo", "Cara"];
+    return (
+      <div style={{display: "flex", gap: 22}}>
+        {grupos.map((g) => (
+          <div key={g} style={{width: 360, background: "#243656", borderRadius: 24, padding: 22}}>
+            <div style={{fontFamily: sans, fontWeight: 800, fontSize: 32, color: CAMEL}}>{g}</div>
+            <div style={{marginTop: 16, height: 150, borderRadius: 16, background: MARFIL}} />
+            <div style={{marginTop: 12, height: 90, borderRadius: 16, background: "rgba(255,248,238,0.35)"}} />
+          </div>
+        ))}
+      </div>
+    );
+  }
+  if (scene.visual === "measure") {
+    const nums = [
+      ["12", "cortes / min"],
+      ["#1B2A4A", "color"],
+      ["38%", "texto"],
+    ];
+    return (
+      <div style={{display: "flex", gap: 28}}>
+        {nums.map(([n, l]) => (
+          <div key={l} style={{width: 380, background: MARFIL, color: NAVY, borderRadius: 24, padding: "28px 24px"}}>
+            <div style={{fontFamily: sans, fontWeight: 800, fontSize: 72, letterSpacing: -2}}>{n}</div>
+            <div style={{fontFamily: sans, fontWeight: 600, fontSize: 32}}>{l}</div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+  if (scene.visual === "save" || scene.visual === "install") {
+    return (
+      <div style={{background: "#243656", borderRadius: 24, padding: "36px 40px", width: 1280}}>
+        <div style={{fontFamily: sans, fontWeight: 700, fontSize: 40, color: SALVIA}}>.claude/skills/</div>
+        <div style={{marginTop: 16, fontFamily: sans, fontWeight: 800, fontSize: 48}}>picassos-red</div>
+        <div style={{marginTop: 8, fontFamily: sans, fontWeight: 800, fontSize: 48}}>oficio-de-edicion</div>
+      </div>
+    );
+  }
+  if (scene.visual === "layers") {
+    const capas = ["Reglas", "Formato", "Estilo"];
+    return (
+      <div style={{display: "flex", flexDirection: "column", gap: 16, width: 900}}>
+        {capas.map((c, i) => (
+          <div key={c} style={{background: i === 2 ? MARFIL : "#243656", color: i === 2 ? NAVY : MARFIL, borderRadius: 20, padding: "22px 32px", fontFamily: sans, fontWeight: 800, fontSize: 48}}>
+            {c}
+          </div>
+        ))}
+      </div>
+    );
+  }
+  if (scene.visual === "chat") {
+    return (
+      <div style={{width: 1280, background: "#243656", borderRadius: 28, padding: 36}}>
+        <div style={{fontFamily: sans, fontWeight: 700, fontSize: 28, color: CAMEL}}>Prompt</div>
+        <div style={{marginTop: 18, fontFamily: sans, fontWeight: 650, fontSize: 40, lineHeight: 1.25, color: MARFIL}}>
+          Clona el repo. Copia las dos carpetas. Arranca con un video mío.
+        </div>
+      </div>
+    );
+  }
+  return null;
+};
+
+const Frase: React.FC<{scene: Scene; time: number; fps: number}> = ({scene, time, fps}) => {
+  const dichos = scene.words.filter((w) => w.start <= time + 0.04);
+  return (
+    <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center", gap: "10px 18px", maxWidth: 1680}}>
+      {dichos.map((w, i) => {
+        const on = norm(w.t).length > 2 && (norm(scene.key).includes(norm(w.t)) || norm(w.t).includes(norm(scene.key).split(" ")[0]));
+        const local = Math.max(0, (time - w.start) * fps);
+        if (on) return <Palabra key={`${w.t}-${i}`} text={w.t} on local={local} />;
+        const p = interpolate(local, [0, 8], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+        return (
+          <span key={`${w.t}-${i}`} style={{fontFamily: sans, fontWeight: 800, fontSize: 64, letterSpacing: -1, color: MARFIL, opacity: p, filter: `blur(${(1 - p) * 8}px)`}}>
+            {w.t}
+          </span>
+        );
+      })}
+    </div>
+  );
+};
+
+const Escena: React.FC<{scene: Scene}> = ({scene}) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const time = scene.start + frame / fps;
+  const muestraMock = !["word", "hero", "close"].includes(scene.visual);
+  return (
+    <AbsoluteFill>
+      <Grid />
+      <div style={{position: "absolute", top: 64, left: 72, right: 72, bottom: 150, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 36}}>
+        {muestraMock ? <Mock scene={scene} time={time} /> : null}
+        <Frase scene={scene} time={time} fps={fps} />
       </div>
     </AbsoluteFill>
-  );
-};
-
-const Open: React.FC = () => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  return (
-    <Chrome>
-      <div style={{...rise(frame, fps), marginTop: 120}}>
-        <div style={{fontSize: 34, fontWeight: 600, color: MUTED}}>Picasso's RED</div>
-        <div style={{fontSize: 28, fontWeight: 600, color: BLUE, marginTop: 8}}>Reverse Engineer Designs</div>
-      </div>
-      <h1 style={{...rise(frame, fps, 8), margin: "28px 0 0", fontSize: 108, lineHeight: 0.98, letterSpacing: -3, fontWeight: 800, maxWidth: 1400}}>
-        Destila un <span style={{fontFamily: serif, fontStyle: "italic", fontWeight: 800}}>estilo</span> de edición
-      </h1>
-      <div style={{...rise(frame, fps, 16), marginTop: 36, fontSize: 40, fontWeight: 700}}>Es gratis.</div>
-    </Chrome>
-  );
-};
-
-const What: React.FC = () => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  const lines = [
-    "Dos piezas. Un paquete.",
-    "RED aprende el estilo.",
-    "El oficio edita con ese estilo.",
-    "Si no hay estilo, no inventa uno. Te manda a RED.",
-  ];
-  return (
-    <Chrome>
-      <div style={{marginTop: 80, display: "flex", flexDirection: "column", gap: 28}}>
-        {lines.map((line, i) => (
-          <div key={line} style={{...rise(frame, fps, i * 10), fontSize: i === 0 ? 72 : 48, fontWeight: 800, letterSpacing: -1.2, color: i === 0 ? TEXT : MUTED}}>
-            {line}
-          </div>
-        ))}
-      </div>
-    </Chrome>
-  );
-};
-
-const Pieces: React.FC = () => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  const cards = [
-    {title: "Picasso's RED", body: "Mide las referencias y desarma el estilo. Lo que se copia es la lógica, no la identidad de otra persona."},
-    {title: "Oficio de edición", body: "Reglas, formato y un solo estilo. Si el estilo no está, esta pieza no sigue."},
-  ];
-  return (
-    <Chrome>
-      <div style={{...rise(frame, fps), fontSize: 64, fontWeight: 800, letterSpacing: -1.5}}>Las dos piezas</div>
-      <div style={{display: "flex", gap: 28, marginTop: 48}}>
-        {cards.map((card, i) => (
-          <div key={card.title} style={{...rise(frame, fps, 8 + i * 8), flex: 1, background: NAVY_CARD, border: `1px solid ${LINE}`, borderRadius: 20, padding: 40}}>
-            <div style={{fontSize: 42, fontWeight: 800, letterSpacing: -0.8}}>{card.title}</div>
-            <div style={{marginTop: 18, fontSize: 32, lineHeight: 1.35, fontWeight: 600, color: MUTED}}>{card.body}</div>
-          </div>
-        ))}
-      </div>
-    </Chrome>
-  );
-};
-
-const STEPS = [
-  {n: "01", t: "Formato", d: "Siempre se pregunta. No se adivina. De ahí salen el tamaño y la zona segura."},
-  {n: "02", t: "Lienzo", d: "Figma, Wonder, Paper, Excalidraw o el que ya uses. Sin lienzo no hay síntesis."},
-  {n: "03", t: "Ingeniería inversa", d: "Se mide. Lo que no se puede calcular se dice. No se inventa un número."},
-  {n: "04", t: "Estilo aprobado", d: "Lo que marcas se guarda en la carpeta de estilos del oficio."},
-  {n: "05", t: "El oficio edita", d: "El siguiente video sale con ese estilo."},
-];
-
-const Flow: React.FC = () => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  const intro = 20;
-  const each = Math.floor((S.flow - intro) / STEPS.length);
-  const active = Math.min(STEPS.length - 1, Math.max(0, Math.floor((frame - intro) / each)));
-  return (
-    <Chrome>
-      <div style={{...rise(frame, fps), fontSize: 28, fontWeight: 700, color: BLUE}}>El flujo completo</div>
-      <div style={{marginTop: 28, display: "flex", flexDirection: "column", gap: 14}}>
-        {STEPS.map((step, i) => {
-          const on = i === active;
-          return (
-            <div
-              key={step.n}
-              style={{
-                display: "flex",
-                gap: 28,
-                alignItems: "center",
-                padding: "18px 28px",
-                borderRadius: 16,
-                background: on ? "rgba(46,112,240,0.16)" : "transparent",
-                border: `1px solid ${on ? BLUE : "transparent"}`,
-                opacity: frame < intro ? 0.35 : i <= active ? 1 : 0.35,
-              }}
-            >
-              <div style={{fontSize: 40, fontWeight: 800, color: BLUE, width: 84}}>{step.n}</div>
-              <div>
-                <div style={{fontSize: 40, fontWeight: 800, letterSpacing: -0.6}}>{step.t}</div>
-                {on ? <div style={{marginTop: 6, fontSize: 30, fontWeight: 600, color: MUTED, maxWidth: 1400}}>{step.d}</div> : null}
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </Chrome>
-  );
-};
-
-const FORMATS = [
-  ["Reel hablado", "1080 × 1920"],
-  ["Sin cara", "Voz, stock o imagen"],
-  ["Motion", "Una frase, una escena"],
-  ["Tutorial", "Pantalla limpia"],
-  ["Anuncio", "Se mide la plataforma"],
-  ["Video largo", "Clase o YouTube"],
-];
-
-const Formats: React.FC = () => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  return (
-    <Chrome>
-      <div style={{...rise(frame, fps), fontSize: 64, fontWeight: 800, letterSpacing: -1.4}}>Seis formatos</div>
-      <div style={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 22, marginTop: 40}}>
-        {FORMATS.map(([title, body], i) => (
-          <div key={title} style={{...rise(frame, fps, 6 + i * 4), background: NAVY_CARD, border: `1px solid ${LINE}`, borderRadius: 18, padding: "32px 28px"}}>
-            <div style={{fontSize: 36, fontWeight: 800}}>{title}</div>
-            <div style={{marginTop: 10, fontSize: 26, fontWeight: 600, color: MUTED}}>{body}</div>
-          </div>
-        ))}
-      </div>
-    </Chrome>
-  );
-};
-
-const LINES = [
-  "Copia dos carpetas a .claude/skills/",
-  "picassos-red",
-  "oficio-de-edicion",
-  "pip install -r requirements.txt",
-  "Hacen falta ffmpeg y ffprobe",
-];
-
-const Install: React.FC = () => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  return (
-    <Chrome>
-      <div style={{...rise(frame, fps), fontSize: 64, fontWeight: 800, letterSpacing: -1.4}}>Instalación</div>
-      <div style={{marginTop: 36, background: "#0A1A3A", border: `1px solid ${LINE}`, borderRadius: 18, padding: "36px 40px", display: "flex", flexDirection: "column", gap: 18}}>
-        {LINES.map((line, i) => (
-          <div key={line} style={{...rise(frame, fps, 8 + i * 6), fontFamily: i === 0 || i === 4 ? sans : "ui-monospace, monospace", fontSize: i === 0 || i === 4 ? 36 : 34, fontWeight: 650, color: i === 1 || i === 2 ? BLUE : TEXT}}>
-            {line}
-          </div>
-        ))}
-      </div>
-    </Chrome>
-  );
-};
-
-const Prompt: React.FC = () => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  const lines = [
-    "Pégalo en tu IA",
-    "Clona el repositorio",
-    "Copia las dos carpetas de skills",
-    "Arranca RED con un video de referencia",
-    "El formato se pregunta. El lienzo es obligatorio.",
-  ];
-  return (
-    <Chrome>
-      <div style={{...rise(frame, fps), fontSize: 64, fontWeight: 800, letterSpacing: -1.4}}>El prompt para tu IA</div>
-      <div style={{marginTop: 40, display: "flex", flexDirection: "column", gap: 22}}>
-        {lines.map((line, i) => (
-          <div key={line} style={{...rise(frame, fps, 6 + i * 5), fontSize: i === 0 ? 48 : 40, fontWeight: 700, color: i === 0 ? TEXT : MUTED}}>
-            {line}
-          </div>
-        ))}
-      </div>
-    </Chrome>
-  );
-};
-
-const End: React.FC = () => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  return (
-    <Chrome>
-      <div style={{marginTop: 90, ...rise(frame, fps)}}>
-        <div style={{fontSize: 72, fontWeight: 800, letterSpacing: -1.6}}>Primero se entiende.</div>
-        <div style={{fontSize: 72, fontWeight: 800, letterSpacing: -1.6}}>Después se edita.</div>
-      </div>
-      <div style={{...rise(frame, fps, 12), marginTop: 40, fontSize: 32, fontWeight: 600, color: MUTED, maxWidth: 1200}}>
-        El método se inspira en Joseph y en su video sobre el estilo de edición de Arthur Brooks.
-      </div>
-      <div style={{...rise(frame, fps, 18), marginTop: 28, fontSize: 30, fontWeight: 700, color: BLUE}}>
-        github.com/alvexworkspace/ingeniera-inversa-edit-style
-      </div>
-    </Chrome>
   );
 };
 
 export const Tutorial: React.FC = () => {
-  let from = 0;
-  const blocks: Array<[number, React.FC]> = [
-    [S.open, Open],
-    [S.what, What],
-    [S.pieces, Pieces],
-    [S.flow, Flow],
-    [S.formats, Formats],
-    [S.install, Install],
-    [S.prompt, Prompt],
-    [S.end, End],
-  ];
+  const {fps} = useVideoConfig();
+  const total = Math.ceil(timeline.duration * fps);
   return (
-    <AbsoluteFill style={{background: NAVY}}>
-      {blocks.map(([dur, Comp], i) => {
-        const start = from;
-        from += dur;
+    <AbsoluteFill style={{background: NAVY, fontFamily: sans}}>
+      <Audio src={staticFile("voz.mp3")} />
+      {SCENES.map((scene) => {
+        const from = Math.round(scene.start * fps);
+        const dur = Math.max(1, Math.round((scene.end - scene.start) * fps));
         return (
-          <Sequence key={i} from={start} durationInFrames={dur}>
-            <Comp />
+          <Sequence key={scene.id} from={from} durationInFrames={dur}>
+            <Escena scene={scene} />
           </Sequence>
         );
       })}
+      <div style={{position: "absolute", left: 80, right: 80, bottom: 36, height: 4, background: "rgba(255,248,238,0.15)"}}>
+        <Bar total={total} />
+      </div>
     </AbsoluteFill>
   );
+};
+
+const Bar: React.FC<{total: number}> = ({total}) => {
+  const frame = useCurrentFrame();
+  return <div style={{width: `${(frame / total) * 100}%`, height: "100%", background: CAMEL}} />;
 };
