@@ -1,4 +1,4 @@
-"""Graba la locución antes de animar. Una frase, un archivo, y un silencio corto entre ideas."""
+"""Una sola toma. La voz se graba continua, a velocidad normal o un poco más rápida."""
 import asyncio
 import json
 import subprocess
@@ -8,17 +8,34 @@ import edge_tts
 
 ROOT = Path(__file__).resolve().parents[1]
 GUION = json.loads((ROOT / "guion.json").read_text(encoding="utf-8"))
-VOICE = "es-MX-DaliaNeural"
-GAP = 0.28
-TMP = ROOT / "tmp-voz"
 PUBLIC = ROOT / "public"
-TMP.mkdir(exist_ok=True)
 PUBLIC.mkdir(exist_ok=True)
 
 
-async def grabar(texto: str, destino: Path) -> list:
+def norm(s: str) -> str:
+    import unicodedata
+    s = unicodedata.normalize("NFD", s.lower())
+    return "".join(c for c in s if unicodedata.category(c) != "Mn")
+
+
+def juntar(palabras: list, ancla: str) -> int:
+    partes = [norm(p) for p in ancla.split()]
+    textos = [norm(p["t"]) for p in palabras]
+    for i in range(len(textos) - len(partes) + 1):
+        if textos[i : i + len(partes)] == partes:
+            return i
+    raise SystemExit(f"No encontré el ancla: {ancla}")
+
+
+async def grabar() -> list:
     palabras = []
-    comm = edge_tts.Communicate(texto, VOICE, rate="-6%", boundary="WordBoundary")
+    comm = edge_tts.Communicate(
+        GUION["text"],
+        GUION["voice"],
+        rate=GUION["rate"],
+        boundary="WordBoundary",
+    )
+    destino = PUBLIC / "voz.mp3"
     with destino.open("wb") as out:
         async for chunk in comm.stream():
             if chunk["type"] == "audio":
@@ -26,8 +43,8 @@ async def grabar(texto: str, destino: Path) -> list:
             elif chunk["type"] == "WordBoundary":
                 palabras.append({
                     "t": chunk["text"],
-                    "start": chunk["offset"] / 10_000_000,
-                    "end": (chunk["offset"] + chunk["duration"]) / 10_000_000,
+                    "start": round(chunk["offset"] / 10_000_000, 3),
+                    "end": round((chunk["offset"] + chunk["duration"]) / 10_000_000, 3),
                 })
     return palabras
 
@@ -40,46 +57,100 @@ def duracion(ruta: Path) -> float:
     return float(r.stdout.strip())
 
 
+def silencios(ruta: Path, minimo: float) -> list:
+    r = subprocess.run(
+        ["ffmpeg", "-i", str(ruta), "-af", f"silencedetect=noise=-35dB:d={minimo}", "-f", "null", "-"],
+        capture_output=True, text=True,
+    )
+    inicios, fines = [], []
+    for linea in r.stderr.splitlines():
+        if "silence_start:" in linea:
+            inicios.append(float(linea.split("silence_start:")[1].strip()))
+        elif "silence_end:" in linea:
+            fines.append(float(linea.split("silence_end:")[1].split("|")[0].strip()))
+    return list(zip(inicios, fines))
+
+
+def comprimir(ruta: Path, palabras: list) -> tuple:
+    """Deja como mucho 90 ms de silencio entre frases. El final se conserva."""
+    largo = duracion(ruta)
+    quites = []
+    for ini, fin in silencios(ruta, 0.12):
+        if fin >= largo - 0.08:
+            continue
+        if ini < 0.05:
+            continue
+        if fin - ini <= 0.1:
+            continue
+        quites.append((ini + 0.09, fin))
+    if not quites:
+        return palabras, largo
+    tramos = []
+    cursor = 0.0
+    for a, b in quites:
+        tramos.append((cursor, a))
+        cursor = b
+    tramos.append((cursor, largo))
+    filtros = []
+    etiquetas = []
+    for i, (a, b) in enumerate(tramos):
+        fade = 0.004 if b - a > 0.02 else 0
+        salida = f",afade=t=in:st=0:d={fade},afade=t=out:st={max(0, b - a - fade)}:d={fade}" if fade else ""
+        filtros.append(f"[0:a]atrim={a:.4f}:{b:.4f},asetpts=PTS-STARTPTS{salida}[a{i}]")
+        etiquetas.append(f"[a{i}]")
+    filtros.append("".join(etiquetas) + f"concat=n={len(tramos)}:v=0:a=1[out]")
+    destino = ruta.with_suffix(".junto.mp3")
+    subprocess.run(
+        ["ffmpeg", "-y", "-i", str(ruta), "-filter_complex", ";".join(filtros), "-map", "[out]", "-q:a", "4", str(destino)],
+        check=True, capture_output=True,
+    )
+    destino.replace(ruta)
+
+    def mover(t: float) -> float:
+        corrido = 0.0
+        for a, b in quites:
+            if t >= b:
+                corrido += b - a
+            elif t > a:
+                return round(a - corrido, 3)
+            else:
+                break
+        return round(t - corrido, 3)
+
+    nuevas = [{"t": p["t"], "start": mover(p["start"]), "end": mover(p["end"])} for p in palabras]
+    return nuevas, duracion(ruta)
+
+
 async def main():
-    escenas = []
-    reloj = 0.0
-    lista = TMP / "lista.txt"
-    partes = []
-    silencio = TMP / "silencio.mp3"
-    subprocess.run(
-        ["ffmpeg", "-y", "-f", "lavfi", "-i", "anullsrc=r=24000:cl=mono", "-t", str(GAP), "-q:a", "9", str(silencio)],
-        check=True, capture_output=True,
-    )
-    for i, item in enumerate(GUION):
-        mp3 = TMP / f"{i:02d}.mp3"
-        palabras = await grabar(item["say"], mp3)
-        largo = duracion(mp3)
-        escenas.append({
-            **item,
-            "start": round(reloj, 3),
-            "end": round(reloj + largo, 3),
-            "words": [
-                {"t": p["t"], "start": round(reloj + p["start"], 3), "end": round(reloj + p["end"], 3)}
-                for p in palabras
-            ],
-        })
-        reloj += largo
-        partes.append(mp3)
-        if i < len(GUION) - 1:
-            reloj += GAP
-            partes.append(silencio)
-    lineas = []
-    for parte in partes:
-        lineas.append(f"file '{parte}'")
-    lista.write_text("\n".join(lineas) + "\n", encoding="utf-8")
+    palabras = await grabar()
     voz = PUBLIC / "voz.mp3"
-    subprocess.run(
-        ["ffmpeg", "-y", "-f", "concat", "-safe", "0", "-i", str(lista), "-c", "copy", str(voz)],
-        check=True, capture_output=True,
-    )
-    data = {"voice": VOICE, "duration": round(duracion(voz), 3), "scenes": escenas}
+    palabras, largo = comprimir(voz, palabras)
+    indices = [juntar(palabras, s["anchor"]) for s in GUION["scenes"]]
+    escenas = []
+    for n, item in enumerate(GUION["scenes"]):
+        ini = indices[n]
+        fin = indices[n + 1] if n + 1 < len(indices) else len(palabras)
+        grupo = palabras[ini:fin]
+        inicio = grupo[0]["start"]
+        final = palabras[fin]["start"] if n + 1 < len(indices) else largo
+        escenas.append({
+            "id": item["id"],
+            "visual": item["visual"],
+            "key": item["key"],
+            "start": inicio,
+            "end": final,
+            "words": grupo,
+        })
+    data = {
+        "voice": GUION["voice"],
+        "rate": GUION["rate"],
+        "text": GUION["text"],
+        "duration": round(largo, 3),
+        "words": palabras,
+        "scenes": escenas,
+    }
     (ROOT / "src" / "timeline.json").write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"{VOICE} {data['duration']}s {len(escenas)} escenas")
+    print(f"{GUION['voice']} {GUION['rate']} {largo:.2f}s {len(palabras)} palabras {len(escenas)} escenas")
 
 
 if __name__ == "__main__":
