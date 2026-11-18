@@ -103,7 +103,7 @@ Los tests arman videos sintéticos con ffmpeg y no usan la red. Dos pruebas de c
 
 ## Landing
 
-La página del paquete está en [`landing/index.html`](landing/index.html). Es HTML, CSS y JS sin build. Se abre el archivo en el navegador o se sirve la carpeta `landing/`. No está publicada.
+La página del paquete está en [`landing/index.html`](landing/index.html). Es HTML, CSS y JS sin build. Se abre el archivo en el navegador o se sirve la carpeta `landing/`. No está publicada. El tutorial del hero se vuelve a renderizar desde `video/` con `npm install` y `npm run render`.
 
 ## Créditos
 
