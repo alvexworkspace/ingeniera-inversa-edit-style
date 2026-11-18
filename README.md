@@ -1,88 +1,106 @@
-# Picasso's RED
+# Picasso's RED y el oficio de edición
 
-RED significa **Reverse Engineer Designs**: ingeniería inversa de un diseño audiovisual.
+Dos skills de Claude Code para editar video con un estilo propio, sin copiar la identidad de otra persona.
 
-Esta skill de Claude Code desarma un estilo (edición con cara, motion, formato, faceless, video largo o ilustración) a partir de sus referencias y lo vuelve medidas, un tablero y piezas que se pueden repetir. Primero se entiende por qué el estilo funciona, después se miden los números y al final se edita. Lo que se copia es la lógica (cuándo entra cada escena, curvas, tiempos, jerarquía), no la identidad de otro creador.
+**Picasso's RED** (RED = Reverse Engineer Designs) desarma un estilo: pregunta el formato, mide las referencias y no sintetiza hasta que el dueño marca un lienzo. **Oficio de edición** es la puerta para editar: reglas, oficio, formato y el estilo que RED dejó guardado.
 
-El paquete de medición sigue en `scripts/rea/` y se importa como `rea`. Renombrarlo a `red` rompería los `import rea` de los módulos y de los tests. RED es el nombre del método; `rea` es el nombre del paquete de Python. La variable de entorno de los modelos de cara también se llama `REA_MODELOS`, y la caché queda en `~/.cache/rea/modelos` (en Windows, `%LOCALAPPDATA%/rea/modelos`).
+El paquete de medición sigue en `scripts/rea/` dentro de Picasso's RED y se importa como `rea`. Renombrarlo rompería los imports y los tests. RED es el nombre del método; `rea` es el nombre del paquete de Python. La variable de los modelos de cara es `REA_MODELOS`.
 
-## Instalarla en un proyecto de Claude Code
+## Cómo se usan juntas
 
-En este repo la skill ya está en su sitio. Para usarla en otro proyecto, copia la carpeta dentro de `.claude/skills/`:
+```mermaid
+flowchart TD
+  A[Preguntar el formato] --> B{Hay un estilo en estilos/}
+  B -->|No| C[Picasso's RED]
+  C --> D[Medir referencias]
+  D --> E[Lienzo: tablero y formato a tamaño real]
+  E --> F[El dueño marca y acomoda]
+  F --> G[Archivo de estilo]
+  G --> H[Oficio de edición]
+  B -->|Sí| H
+  H --> I[Reglas, oficio y formato]
+  I --> J[Storyboard en el lienzo]
+  J --> K[Editar, verificar, OK del dueño]
+```
+
+1. Se pregunta el formato: reel o short 9:16, YouTube 16:9, faceless, motion o explicativo, tutorial con pantalla, anuncio, video largo o clase. Si no está dicho, se pregunta. No se adivina. De ahí salen la resolución y la zona segura.
+2. Si no hay estilo, Picasso's RED desarma las referencias. El lienzo (Figma, Wonder, Paper, Excalidraw o el que uses) es obligatorio: tablero de capturas por tipo de escena y formatos dibujados en tamaño real. Si hay un MCP o un conector, se usa. Si no, se exportan las imágenes y una guía para armarlo a mano. Sin lienzo no hay síntesis.
+3. Lo aprobado se guarda en `.claude/skills/oficio-de-edicion/estilos/`. Esa carpeta llega vacía, con una plantilla. No trae ningún estilo armado.
+4. Para editar un video, el oficio carga las reglas, el formato que toca y un solo estilo. Si falta el estilo, pide Picasso's RED.
+
+## Instalar las dos
+
+En este repo ya están en su sitio. Para otro proyecto de Claude Code:
 
 ```bash
 mkdir -p .claude/skills
 cp -a .claude/skills/picassos-red /ruta/del/proyecto/.claude/skills/
+cp -a .claude/skills/oficio-de-edicion /ruta/del/proyecto/.claude/skills/
 ```
 
-Queda en `.claude/skills/picassos-red/`. Ahí viven el método (`SKILL.md`), la plantilla de desarme, las referencias, la spec y los scripts. En Claude Code se invoca con frases como «quiero editar como X» o «desarma este estilo».
+Quedan en `.claude/skills/picassos-red/` y `.claude/skills/oficio-de-edicion/`. Se invocan con «quiero editar como X», «desarma este estilo» o «edita este reel».
 
-Instala las dependencias de Python en el proyecto donde vayas a medir:
+Las dependencias de Python hacen falta donde se mide:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-En el sistema hacen falta `ffmpeg` y `ffprobe` en el `PATH`. El medidor decodifica con ffmpeg (también AV1) y el volumen lo saca el filtro `ebur128`.
+En el sistema hacen falta `ffmpeg` y `ffprobe` en el `PATH`. El medidor decodifica con ffmpeg y el volumen lo saca el filtro `ebur128`.
 
 | Paquete | Para qué |
 |---|---|
 | `numpy`, `scipy` | números, flujo espectral, curvas |
 | `opencv-python-headless` | imagen, flujo óptico, detección de cara (YuNet) |
 | `scikit-image` | esqueleto del contorno en ilustración |
-| `rapidocr-onnxruntime` | texto en pantalla (OCR). Si falta, esas métricas salen nulas con su causa |
+| `rapidocr-onnxruntime` | texto en pantalla. Si falta, esas métricas salen nulas con su causa |
 | `pytest` | la suite de `scripts/rea/tests` |
 
-La primera vez que quieras medir caras, baja el modelo YuNet (una vez, fuera de git):
+La primera vez que se miden caras:
 
 ```bash
 python .claude/skills/picassos-red/scripts/rea/medir.py --descargar-modelos
 ```
 
-## Ejemplo de uso
+## Qué hay en cada skill
 
-En el proyecto, con la skill ya copiada:
+**Picasso's RED** (`.claude/skills/picassos-red/`)
 
-- «Quiero editar como este canal» y una carpeta o una lista de links de 10 a 20 videos bien editados.
-- «Desarma este estilo» sobre esa carpeta.
+- `SKILL.md`: el método, con el formato al inicio y el lienzo obligatorio.
+- `plantilla-desarme.md`, `referencia/`, la spec del medidor y `scripts/rea/`.
 
-La skill reúne las referencias, las numera y mide:
+**Oficio de edición** (`.claude/skills/oficio-de-edicion/`)
+
+- `SKILL.md`: la puerta. Si no hay estilo, llama a Picasso's RED.
+- `reglas.md`: zonas seguras, sonido, movimiento y verificación.
+- `oficio/editor/` y `oficio/motion/`: lo que haría cualquier editor con cualquier estilo.
+- `formatos/`: reel hablado, faceless, motion, tutorial con pantalla, anuncio y video largo.
+- `estilos/`: solo `README.md` y `PLANTILLA.md`. El estilo se crea con RED y se guarda aquí.
+
+El guion de un video tutorial de 8 a 12 minutos está en `docs/guion-tutorial.md`.
+
+## Ejemplo
+
+«Quiero editar como este canal», y el formato todavía no está dicho. La skill pregunta. Si la respuesta es un reel vertical, se reúnen 10 a 20 reels y se mide:
 
 ```bash
 python .claude/skills/picassos-red/scripts/rea/medir.py ./referencias \
   --salida investigaciones/2026-11-17-estilo/medidas
 ```
 
-Deja un `medidas.json` por video y un `resumen` con mediana, p10 y p90. El estudio completo (mapa, desarmes, capturas, síntesis) va en `investigaciones/<fecha>-<estilo>/`. Cuando haya un render propio, se compara contra ese resumen:
-
-```bash
-python .claude/skills/picassos-red/scripts/rea/comparar.py \
-  investigaciones/2026-11-17-estilo/medidas/resumen.json \
-  investigaciones/2026-11-17-estilo/render/medidas.json
-```
+Las capturas van al lienzo, agrupadas por tipo de escena, y el formato 1080×1920 se dibuja con la zona segura. El dueño marca. El estilo queda en `oficio-de-edicion/estilos/`. A partir de ahí, «edita este reel» usa el oficio, el formato de reel hablado y ese estilo.
 
 Los videos de referencia no se commitean: a git van el texto y las medidas. Nunca se genera la cara ni la voz de una persona real sin su permiso.
 
-## Qué hay en la carpeta
-
-- `SKILL.md`: el método, paso a paso.
-- `plantilla-desarme.md`: la ficha de cada video.
-- `referencia/dimensiones.md`: las siete dimensiones y el vocabulario de diseño.
-- `referencia/ilustracion.md`: el modo de dibujo y animación.
-- `docs/2026-11-11-picassos-red-spec.md`: la spec del medidor.
-- `scripts/rea/`: `medir.py`, `comparar.py` y un módulo por dimensión, con tests.
-
 ## Tests
-
-Desde la raíz de este repo:
 
 ```bash
 pip install -r requirements.txt
 PYTHONPATH=.claude/skills/picassos-red/scripts pytest .claude/skills/picassos-red/scripts/rea/tests
 ```
 
-Los tests arman videos sintéticos con ffmpeg y no usan la red. Dos pruebas de cara se saltan si YuNet no está descargado; el resto de la dimensión cara (métrica nula cuando falta el modelo, y la verificación del hash al bajarlo) sí corre.
+Los tests arman videos sintéticos con ffmpeg y no usan la red. Dos pruebas de cara se saltan si YuNet no está descargado.
 
 ## Créditos
 
-El método se inspira en Joseph, en su video sobre el estilo de edición de Arthur Brooks y en su forma de volver un estilo una skill de diseño: si no sabes por qué un estilo funciona, la IA solo ayuda a hacer videos malos más rápido. El vocabulario de composición, equilibrio, contraste, color 60-30-10 y letra sale de sus tips de diseño para editores.
+El método se inspira en Joseph, en su video sobre el estilo de edición de Arthur Brooks y en su forma de volver un estilo una skill de diseño: si no sabes por qué un estilo funciona, la IA solo ayuda a hacer videos malos más rápido. El vocabulario de composición, equilibrio, contraste, color 60-30-10 y letra sale de sus tips de diseño para editores. El oficio junta principios que haría cualquier editor, separados del gusto de un estilo.

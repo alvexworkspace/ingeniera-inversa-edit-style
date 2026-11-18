@@ -21,8 +21,8 @@ en vez de cinco a la vez.
 
 ## 4. Hoja de modelo
 Como en la animación de verdad: el personaje de frente, de lado y de espaldas, sus expresiones y sus poses, con las
-medidas del paso 2 escritas al lado (grosor del contorno, color de la sombra, proporciones). Va en la herramienta de
-diseño, junto al tablero.
+medidas del paso 2 escritas al lado (grosor del contorno, color de la sombra, proporciones). Va en el lienzo,
+junto al tablero. Sin ese lienzo no se sintetiza.
 
 ## 5. Las reglas del porqué
 Además de los números, las reglas que dejan crear escenas nuevas: "la luz viene de un solo lado y el contorno engorda
