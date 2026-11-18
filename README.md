@@ -101,6 +101,10 @@ PYTHONPATH=.claude/skills/picassos-red/scripts pytest .claude/skills/picassos-re
 
 Los tests arman videos sintéticos con ffmpeg y no usan la red. Dos pruebas de cara se saltan si YuNet no está descargado.
 
+## Landing
+
+La página del paquete está en [`landing/index.html`](landing/index.html). Es HTML, CSS y JS sin build. Se abre el archivo en el navegador o se sirve la carpeta `landing/`. No está publicada. El tutorial del hero se vuelve a renderizar desde `video/` con `npm install` y `npm run render`.
+
 ## Créditos
 
 El método se inspira en Joseph, en su video sobre el estilo de edición de Arthur Brooks y en su forma de volver un estilo una skill de diseño: si no sabes por qué un estilo funciona, la IA solo ayuda a hacer videos malos más rápido. El vocabulario de composición, equilibrio, contraste, color 60-30-10 y letra sale de sus tips de diseño para editores. El oficio junta principios que haría cualquier editor, separados del gusto de un estilo.

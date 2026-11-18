@@ -1,0 +1,2238 @@
+{
+ "voice": "es-MX-DaliaNeural",
+ "rate": "+8%",
+ "text": "Esto es Picasso's RED junto al oficio de edición. RED quiere decir Reverse Engineer Designs: ingeniería inversa de un estilo de edición, o de un video sin cara, hasta dejarte un estilo para volver a usarlo. Es gratis, y son dos piezas. RED aprende el estilo y el oficio edita con él. Si no hay estilo, el oficio no inventa uno y te devuelve a RED. El primer paso siempre es el formato: reel, YouTube, sin cara, motion, tutorial, anuncio o clase. Si no lo dices, pregunta, y de ahí salen el tamaño y la zona segura. Después viene el lienzo, y sin lienzo no hay síntesis. Figma, Wonder, Paper, Excalidraw o el que ya uses. Ahí agrupas las capturas, marcas lo que te gusta y acomodas el formato en tamaño real. RED mide las referencias: cortes, color, texto y ritmo. Lo que no puede calcular, lo dice, y no inventa un número. Tú apruebas el estilo y se guarda en la carpeta. El oficio carga las reglas, el formato y ese estilo, y arma la edición. Copias dos carpetas en punto claude skills: picassos red y oficio de edición. Le pegas el prompt a tu IA, clonas el repo y arrancas con un video tuyo. Primero se entiende, después se edita.",
+ "duration": 60.456,
+ "words": [
+  {
+   "t": "Esto",
+   "start": 0.096,
+   "end": 0.339
+  },
+  {
+   "t": "es",
+   "start": 0.351,
+   "end": 0.455
+  },
+  {
+   "t": "Picasso's",
+   "start": 0.467,
+   "end": 0.953
+  },
+  {
+   "t": "RED",
+   "start": 0.964,
+   "end": 1.149
+  },
+  {
+   "t": "junto",
+   "start": 1.161,
+   "end": 1.427
+  },
+  {
+   "t": "al",
+   "start": 1.439,
+   "end": 1.52
+  },
+  {
+   "t": "oficio",
+   "start": 1.532,
+   "end": 1.913
+  },
+  {
+   "t": "de",
+   "start": 1.925,
+   "end": 2.006
+  },
+  {
+   "t": "edición",
+   "start": 2.018,
+   "end": 2.469
+  },
+  {
+   "t": "RED",
+   "start": 2.554,
+   "end": 2.754
+  },
+  {
+   "t": "quiere",
+   "start": 2.765,
+   "end": 2.939
+  },
+  {
+   "t": "decir",
+   "start": 2.95,
+   "end": 3.263
+  },
+  {
+   "t": "Reverse",
+   "start": 3.274,
+   "end": 3.61
+  },
+  {
+   "t": "Engineer",
+   "start": 3.622,
+   "end": 4.004
+  },
+  {
+   "t": "Designs",
+   "start": 4.015,
+   "end": 4.49
+  },
+  {
+   "t": "ingeniería",
+   "start": 4.625,
+   "end": 5.127
+  },
+  {
+   "t": "inversa",
+   "start": 5.138,
+   "end": 5.532
+  },
+  {
+   "t": "de",
+   "start": 5.543,
+   "end": 5.647
+  },
+  {
+   "t": "un",
+   "start": 5.659,
+   "end": 5.809
+  },
+  {
+   "t": "estilo",
+   "start": 5.821,
+   "end": 6.191
+  },
+  {
+   "t": "de",
+   "start": 6.203,
+   "end": 6.295
+  },
+  {
+   "t": "edición",
+   "start": 6.307,
+   "end": 6.724
+  },
+  {
+   "t": "o",
+   "start": 6.876,
+   "end": 6.923
+  },
+  {
+   "t": "de",
+   "start": 6.935,
+   "end": 7.05
+  },
+  {
+   "t": "un",
+   "start": 7.062,
+   "end": 7.154
+  },
+  {
+   "t": "video",
+   "start": 7.166,
+   "end": 7.502
+  },
+  {
+   "t": "sin",
+   "start": 7.513,
+   "end": 7.722
+  },
+  {
+   "t": "cara",
+   "start": 7.733,
+   "end": 7.941
+  },
+  {
+   "t": "hasta",
+   "start": 8.102,
+   "end": 8.241
+  },
+  {
+   "t": "dejarte",
+   "start": 8.252,
+   "end": 8.634
+  },
+  {
+   "t": "un",
+   "start": 8.646,
+   "end": 8.75
+  },
+  {
+   "t": "estilo",
+   "start": 8.761,
+   "end": 9.155
+  },
+  {
+   "t": "para",
+   "start": 9.167,
+   "end": 9.317
+  },
+  {
+   "t": "volver",
+   "start": 9.329,
+   "end": 9.629
+  },
+  {
+   "t": "a",
+   "start": 9.641,
+   "end": 9.676
+  },
+  {
+   "t": "usarlo",
+   "start": 9.687,
+   "end": 10.139
+  },
+  {
+   "t": "Es",
+   "start": 10.222,
+   "end": 10.322
+  },
+  {
+   "t": "gratis",
+   "start": 10.334,
+   "end": 10.843
+  },
+  {
+   "t": "y",
+   "start": 10.94,
+   "end": 10.958
+  },
+  {
+   "t": "son",
+   "start": 10.969,
+   "end": 11.224
+  },
+  {
+   "t": "dos",
+   "start": 11.236,
+   "end": 11.432
+  },
+  {
+   "t": "piezas",
+   "start": 11.444,
+   "end": 12.011
+  },
+  {
+   "t": "RED",
+   "start": 12.093,
+   "end": 12.247
+  },
+  {
+   "t": "aprende",
+   "start": 12.259,
+   "end": 12.652
+  },
+  {
+   "t": "el",
+   "start": 12.664,
+   "end": 12.756
+  },
+  {
+   "t": "estilo",
+   "start": 12.768,
+   "end": 13.173
+  },
+  {
+   "t": "y",
+   "start": 13.185,
+   "end": 13.289
+  },
+  {
+   "t": "el",
+   "start": 13.3,
+   "end": 13.405
+  },
+  {
+   "t": "oficio",
+   "start": 13.416,
+   "end": 13.787
+  },
+  {
+   "t": "edita",
+   "start": 13.798,
+   "end": 14.122
+  },
+  {
+   "t": "con",
+   "start": 14.134,
+   "end": 14.296
+  },
+  {
+   "t": "él",
+   "start": 14.307,
+   "end": 14.516
+  },
+  {
+   "t": "Si",
+   "start": 14.592,
+   "end": 14.676
+  },
+  {
+   "t": "no",
+   "start": 14.688,
+   "end": 14.815
+  },
+  {
+   "t": "hay",
+   "start": 14.827,
+   "end": 14.966
+  },
+  {
+   "t": "estilo",
+   "start": 14.977,
+   "end": 15.382
+  },
+  {
+   "t": "el",
+   "start": 15.512,
+   "end": 15.551
+  },
+  {
+   "t": "oficio",
+   "start": 15.562,
+   "end": 15.944
+  },
+  {
+   "t": "no",
+   "start": 15.956,
+   "end": 16.048
+  },
+  {
+   "t": "inventa",
+   "start": 16.06,
+   "end": 16.453
+  },
+  {
+   "t": "uno",
+   "start": 16.465,
+   "end": 16.835
+  },
+  {
+   "t": "y",
+   "start": 16.847,
+   "end": 16.951
+  },
+  {
+   "t": "te",
+   "start": 16.963,
+   "end": 17.067
+  },
+  {
+   "t": "devuelve",
+   "start": 17.078,
+   "end": 17.472
+  },
+  {
+   "t": "a",
+   "start": 17.483,
+   "end": 17.541
+  },
+  {
+   "t": "RED",
+   "start": 17.553,
+   "end": 17.807
+  },
+  {
+   "t": "El",
+   "start": 17.846,
+   "end": 17.884
+  },
+  {
+   "t": "primer",
+   "start": 17.896,
+   "end": 18.174
+  },
+  {
+   "t": "paso",
+   "start": 18.185,
+   "end": 18.417
+  },
+  {
+   "t": "siempre",
+   "start": 18.428,
+   "end": 18.833
+  },
+  {
+   "t": "es",
+   "start": 18.845,
+   "end": 18.949
+  },
+  {
+   "t": "el",
+   "start": 18.961,
+   "end": 19.042
+  },
+  {
+   "t": "formato",
+   "start": 19.053,
+   "end": 19.493
+  },
+  {
+   "t": "reel",
+   "start": 19.64,
+   "end": 19.821
+  },
+  {
+   "t": "YouTube",
+   "start": 19.956,
+   "end": 20.308
+  },
+  {
+   "t": "sin",
+   "start": 20.381,
+   "end": 20.533
+  },
+  {
+   "t": "cara",
+   "start": 20.545,
+   "end": 20.846
+  },
+  {
+   "t": "motion",
+   "start": 21.004,
+   "end": 21.328
+  },
+  {
+   "t": "tutorial",
+   "start": 21.465,
+   "end": 21.88
+  },
+  {
+   "t": "anuncio",
+   "start": 22.04,
+   "end": 22.562
+  },
+  {
+   "t": "o",
+   "start": 22.574,
+   "end": 22.643
+  },
+  {
+   "t": "clase",
+   "start": 22.655,
+   "end": 23.06
+  },
+  {
+   "t": "Si",
+   "start": 23.133,
+   "end": 23.228
+  },
+  {
+   "t": "no",
+   "start": 23.24,
+   "end": 23.367
+  },
+  {
+   "t": "lo",
+   "start": 23.378,
+   "end": 23.471
+  },
+  {
+   "t": "dices",
+   "start": 23.483,
+   "end": 23.899
+  },
+  {
+   "t": "pregunta",
+   "start": 24.006,
+   "end": 24.389
+  },
+  {
+   "t": "y",
+   "start": 24.542,
+   "end": 24.572
+  },
+  {
+   "t": "de",
+   "start": 24.584,
+   "end": 24.676
+  },
+  {
+   "t": "ahí",
+   "start": 24.688,
+   "end": 24.873
+  },
+  {
+   "t": "salen",
+   "start": 24.884,
+   "end": 25.197
+  },
+  {
+   "t": "el",
+   "start": 25.209,
+   "end": 25.324
+  },
+  {
+   "t": "tamaño",
+   "start": 25.336,
+   "end": 25.81
+  },
+  {
+   "t": "y",
+   "start": 25.822,
+   "end": 25.903
+  },
+  {
+   "t": "la",
+   "start": 25.915,
+   "end": 26.03
+  },
+  {
+   "t": "zona",
+   "start": 26.042,
+   "end": 26.308
+  },
+  {
+   "t": "segura",
+   "start": 26.32,
+   "end": 26.794
+  },
+  {
+   "t": "Después",
+   "start": 26.882,
+   "end": 27.221
+  },
+  {
+   "t": "viene",
+   "start": 27.233,
+   "end": 27.569
+  },
+  {
+   "t": "el",
+   "start": 27.58,
+   "end": 27.65
+  },
+  {
+   "t": "lienzo",
+   "start": 27.661,
+   "end": 28.066
+  },
+  {
+   "t": "y",
+   "start": 28.163,
+   "end": 28.166
+  },
+  {
+   "t": "sin",
+   "start": 28.178,
+   "end": 28.386
+  },
+  {
+   "t": "lienzo",
+   "start": 28.398,
+   "end": 28.78
+  },
+  {
+   "t": "no",
+   "start": 28.791,
+   "end": 29.011
+  },
+  {
+   "t": "hay",
+   "start": 29.023,
+   "end": 29.139
+  },
+  {
+   "t": "síntesis",
+   "start": 29.15,
+   "end": 29.81
+  },
+  {
+   "t": "Figma",
+   "start": 29.89,
+   "end": 30.177
+  },
+  {
+   "t": "Wonder",
+   "start": 30.311,
+   "end": 30.677
+  },
+  {
+   "t": "Paper",
+   "start": 30.779,
+   "end": 31.046
+  },
+  {
+   "t": "Excalidraw",
+   "start": 31.187,
+   "end": 31.784
+  },
+  {
+   "t": "o",
+   "start": 31.796,
+   "end": 31.912
+  },
+  {
+   "t": "el",
+   "start": 31.923,
+   "end": 32.074
+  },
+  {
+   "t": "que",
+   "start": 32.085,
+   "end": 32.178
+  },
+  {
+   "t": "ya",
+   "start": 32.189,
+   "end": 32.409
+  },
+  {
+   "t": "uses",
+   "start": 32.421,
+   "end": 32.919
+  },
+  {
+   "t": "Ahí",
+   "start": 33.005,
+   "end": 33.176
+  },
+  {
+   "t": "agrupas",
+   "start": 33.187,
+   "end": 33.569
+  },
+  {
+   "t": "las",
+   "start": 33.581,
+   "end": 33.72
+  },
+  {
+   "t": "capturas",
+   "start": 33.731,
+   "end": 34.252
+  },
+  {
+   "t": "marcas",
+   "start": 34.368,
+   "end": 34.663
+  },
+  {
+   "t": "lo",
+   "start": 34.675,
+   "end": 34.756
+  },
+  {
+   "t": "que",
+   "start": 34.767,
+   "end": 34.883
+  },
+  {
+   "t": "te",
+   "start": 34.895,
+   "end": 34.976
+  },
+  {
+   "t": "gusta",
+   "start": 34.987,
+   "end": 35.334
+  },
+  {
+   "t": "y",
+   "start": 35.346,
+   "end": 35.427
+  },
+  {
+   "t": "acomodas",
+   "start": 35.439,
+   "end": 35.948
+  },
+  {
+   "t": "el",
+   "start": 35.959,
+   "end": 36.04
+  },
+  {
+   "t": "formato",
+   "start": 36.052,
+   "end": 36.492
+  },
+  {
+   "t": "en",
+   "start": 36.503,
+   "end": 36.608
+  },
+  {
+   "t": "tamaño",
+   "start": 36.619,
+   "end": 36.978
+  },
+  {
+   "t": "real",
+   "start": 36.99,
+   "end": 37.348
+  },
+  {
+   "t": "RED",
+   "start": 37.427,
+   "end": 37.63
+  },
+  {
+   "t": "mide",
+   "start": 37.642,
+   "end": 37.839
+  },
+  {
+   "t": "las",
+   "start": 37.85,
+   "end": 37.989
+  },
+  {
+   "t": "referencias",
+   "start": 38.001,
+   "end": 38.684
+  },
+  {
+   "t": "cortes",
+   "start": 38.781,
+   "end": 39.22
+  },
+  {
+   "t": "color",
+   "start": 39.322,
+   "end": 39.637
+  },
+  {
+   "t": "texto",
+   "start": 39.748,
+   "end": 40.024
+  },
+  {
+   "t": "y",
+   "start": 40.035,
+   "end": 40.128
+  },
+  {
+   "t": "ritmo",
+   "start": 40.139,
+   "end": 40.521
+  },
+  {
+   "t": "Lo",
+   "start": 40.603,
+   "end": 40.652
+  },
+  {
+   "t": "que",
+   "start": 40.664,
+   "end": 40.756
+  },
+  {
+   "t": "no",
+   "start": 40.768,
+   "end": 40.883
+  },
+  {
+   "t": "puede",
+   "start": 40.895,
+   "end": 41.103
+  },
+  {
+   "t": "calcular",
+   "start": 41.115,
+   "end": 41.589
+  },
+  {
+   "t": "lo",
+   "start": 41.744,
+   "end": 41.808
+  },
+  {
+   "t": "dice",
+   "start": 41.819,
+   "end": 42.143
+  },
+  {
+   "t": "y",
+   "start": 42.272,
+   "end": 42.319
+  },
+  {
+   "t": "no",
+   "start": 42.331,
+   "end": 42.551
+  },
+  {
+   "t": "inventa",
+   "start": 42.563,
+   "end": 43.026
+  },
+  {
+   "t": "un",
+   "start": 43.037,
+   "end": 43.176
+  },
+  {
+   "t": "número",
+   "start": 43.188,
+   "end": 43.604
+  },
+  {
+   "t": "Tú",
+   "start": 43.675,
+   "end": 43.675
+  },
+  {
+   "t": "apruebas",
+   "start": 43.684,
+   "end": 44.09
+  },
+  {
+   "t": "el",
+   "start": 44.101,
+   "end": 44.205
+  },
+  {
+   "t": "estilo",
+   "start": 44.217,
+   "end": 44.645
+  },
+  {
+   "t": "y",
+   "start": 44.657,
+   "end": 44.726
+  },
+  {
+   "t": "se",
+   "start": 44.738,
+   "end": 44.877
+  },
+  {
+   "t": "guarda",
+   "start": 44.888,
+   "end": 45.235
+  },
+  {
+   "t": "en",
+   "start": 45.247,
+   "end": 45.293
+  },
+  {
+   "t": "la",
+   "start": 45.305,
+   "end": 45.386
+  },
+  {
+   "t": "carpeta",
+   "start": 45.397,
+   "end": 45.953
+  },
+  {
+   "t": "El",
+   "start": 46.039,
+   "end": 46.095
+  },
+  {
+   "t": "oficio",
+   "start": 46.106,
+   "end": 46.488
+  },
+  {
+   "t": "carga",
+   "start": 46.5,
+   "end": 46.778
+  },
+  {
+   "t": "las",
+   "start": 46.789,
+   "end": 46.951
+  },
+  {
+   "t": "reglas",
+   "start": 46.963,
+   "end": 47.391
+  },
+  {
+   "t": "el",
+   "start": 47.513,
+   "end": 47.575
+  },
+  {
+   "t": "formato",
+   "start": 47.587,
+   "end": 48.061
+  },
+  {
+   "t": "y",
+   "start": 48.073,
+   "end": 48.212
+  },
+  {
+   "t": "ese",
+   "start": 48.223,
+   "end": 48.385
+  },
+  {
+   "t": "estilo",
+   "start": 48.397,
+   "end": 48.825
+  },
+  {
+   "t": "y",
+   "start": 48.915,
+   "end": 49.001
+  },
+  {
+   "t": "arma",
+   "start": 49.012,
+   "end": 49.29
+  },
+  {
+   "t": "la",
+   "start": 49.302,
+   "end": 49.394
+  },
+  {
+   "t": "edición",
+   "start": 49.406,
+   "end": 49.869
+  },
+  {
+   "t": "Copias",
+   "start": 49.955,
+   "end": 50.215
+  },
+  {
+   "t": "dos",
+   "start": 50.227,
+   "end": 50.377
+  },
+  {
+   "t": "carpetas",
+   "start": 50.389,
+   "end": 50.91
+  },
+  {
+   "t": "en",
+   "start": 50.921,
+   "end": 51.037
+  },
+  {
+   "t": "punto",
+   "start": 51.048,
+   "end": 51.326
+  },
+  {
+   "t": "claude",
+   "start": 51.338,
+   "end": 51.616
+  },
+  {
+   "t": "skills",
+   "start": 51.627,
+   "end": 52.055
+  },
+  {
+   "t": "picassos",
+   "start": 52.159,
+   "end": 52.607
+  },
+  {
+   "t": "red",
+   "start": 52.619,
+   "end": 52.839
+  },
+  {
+   "t": "y",
+   "start": 52.85,
+   "end": 52.908
+  },
+  {
+   "t": "oficio",
+   "start": 52.92,
+   "end": 53.325
+  },
+  {
+   "t": "de",
+   "start": 53.337,
+   "end": 53.441
+  },
+  {
+   "t": "edición",
+   "start": 53.452,
+   "end": 53.904
+  },
+  {
+   "t": "Le",
+   "start": 53.992,
+   "end": 54.071
+  },
+  {
+   "t": "pegas",
+   "start": 54.082,
+   "end": 54.395
+  },
+  {
+   "t": "el",
+   "start": 54.406,
+   "end": 54.534
+  },
+  {
+   "t": "prompt",
+   "start": 54.545,
+   "end": 54.765
+  },
+  {
+   "t": "a",
+   "start": 54.777,
+   "end": 54.835
+  },
+  {
+   "t": "tu",
+   "start": 54.846,
+   "end": 54.985
+  },
+  {
+   "t": "IA",
+   "start": 54.997,
+   "end": 55.286
+  },
+  {
+   "t": "clonas",
+   "start": 55.409,
+   "end": 55.663
+  },
+  {
+   "t": "el",
+   "start": 55.675,
+   "end": 55.791
+  },
+  {
+   "t": "repo",
+   "start": 55.802,
+   "end": 56.091
+  },
+  {
+   "t": "y",
+   "start": 56.103,
+   "end": 56.196
+  },
+  {
+   "t": "arrancas",
+   "start": 56.207,
+   "end": 56.682
+  },
+  {
+   "t": "con",
+   "start": 56.693,
+   "end": 56.844
+  },
+  {
+   "t": "un",
+   "start": 56.855,
+   "end": 56.959
+  },
+  {
+   "t": "video",
+   "start": 56.971,
+   "end": 57.295
+  },
+  {
+   "t": "tuyo",
+   "start": 57.307,
+   "end": 57.665
+  },
+  {
+   "t": "Primero",
+   "start": 57.742,
+   "end": 57.967
+  },
+  {
+   "t": "se",
+   "start": 57.979,
+   "end": 58.094
+  },
+  {
+   "t": "entiende",
+   "start": 58.106,
+   "end": 58.523
+  },
+  {
+   "t": "después",
+   "start": 58.658,
+   "end": 59.037
+  },
+  {
+   "t": "se",
+   "start": 59.049,
+   "end": 59.165
+  },
+  {
+   "t": "edita",
+   "start": 59.176,
+   "end": 59.581
+  }
+ ],
+ "scenes": [
+  {
+   "id": "abre",
+   "visual": "clip",
+   "key": "RED",
+   "start": 0.096,
+   "end": 4.625,
+   "words": [
+    {
+     "t": "Esto",
+     "start": 0.096,
+     "end": 0.339
+    },
+    {
+     "t": "es",
+     "start": 0.351,
+     "end": 0.455
+    },
+    {
+     "t": "Picasso's",
+     "start": 0.467,
+     "end": 0.953
+    },
+    {
+     "t": "RED",
+     "start": 0.964,
+     "end": 1.149
+    },
+    {
+     "t": "junto",
+     "start": 1.161,
+     "end": 1.427
+    },
+    {
+     "t": "al",
+     "start": 1.439,
+     "end": 1.52
+    },
+    {
+     "t": "oficio",
+     "start": 1.532,
+     "end": 1.913
+    },
+    {
+     "t": "de",
+     "start": 1.925,
+     "end": 2.006
+    },
+    {
+     "t": "edición",
+     "start": 2.018,
+     "end": 2.469
+    },
+    {
+     "t": "RED",
+     "start": 2.554,
+     "end": 2.754
+    },
+    {
+     "t": "quiere",
+     "start": 2.765,
+     "end": 2.939
+    },
+    {
+     "t": "decir",
+     "start": 2.95,
+     "end": 3.263
+    },
+    {
+     "t": "Reverse",
+     "start": 3.274,
+     "end": 3.61
+    },
+    {
+     "t": "Engineer",
+     "start": 3.622,
+     "end": 4.004
+    },
+    {
+     "t": "Designs",
+     "start": 4.015,
+     "end": 4.49
+    }
+   ]
+  },
+  {
+   "id": "inversa",
+   "visual": "clip",
+   "key": "inversa",
+   "start": 4.625,
+   "end": 12.093,
+   "words": [
+    {
+     "t": "ingeniería",
+     "start": 4.625,
+     "end": 5.127
+    },
+    {
+     "t": "inversa",
+     "start": 5.138,
+     "end": 5.532
+    },
+    {
+     "t": "de",
+     "start": 5.543,
+     "end": 5.647
+    },
+    {
+     "t": "un",
+     "start": 5.659,
+     "end": 5.809
+    },
+    {
+     "t": "estilo",
+     "start": 5.821,
+     "end": 6.191
+    },
+    {
+     "t": "de",
+     "start": 6.203,
+     "end": 6.295
+    },
+    {
+     "t": "edición",
+     "start": 6.307,
+     "end": 6.724
+    },
+    {
+     "t": "o",
+     "start": 6.876,
+     "end": 6.923
+    },
+    {
+     "t": "de",
+     "start": 6.935,
+     "end": 7.05
+    },
+    {
+     "t": "un",
+     "start": 7.062,
+     "end": 7.154
+    },
+    {
+     "t": "video",
+     "start": 7.166,
+     "end": 7.502
+    },
+    {
+     "t": "sin",
+     "start": 7.513,
+     "end": 7.722
+    },
+    {
+     "t": "cara",
+     "start": 7.733,
+     "end": 7.941
+    },
+    {
+     "t": "hasta",
+     "start": 8.102,
+     "end": 8.241
+    },
+    {
+     "t": "dejarte",
+     "start": 8.252,
+     "end": 8.634
+    },
+    {
+     "t": "un",
+     "start": 8.646,
+     "end": 8.75
+    },
+    {
+     "t": "estilo",
+     "start": 8.761,
+     "end": 9.155
+    },
+    {
+     "t": "para",
+     "start": 9.167,
+     "end": 9.317
+    },
+    {
+     "t": "volver",
+     "start": 9.329,
+     "end": 9.629
+    },
+    {
+     "t": "a",
+     "start": 9.641,
+     "end": 9.676
+    },
+    {
+     "t": "usarlo",
+     "start": 9.687,
+     "end": 10.139
+    },
+    {
+     "t": "Es",
+     "start": 10.222,
+     "end": 10.322
+    },
+    {
+     "t": "gratis",
+     "start": 10.334,
+     "end": 10.843
+    },
+    {
+     "t": "y",
+     "start": 10.94,
+     "end": 10.958
+    },
+    {
+     "t": "son",
+     "start": 10.969,
+     "end": 11.224
+    },
+    {
+     "t": "dos",
+     "start": 11.236,
+     "end": 11.432
+    },
+    {
+     "t": "piezas",
+     "start": 11.444,
+     "end": 12.011
+    }
+   ]
+  },
+  {
+   "id": "piezas",
+   "visual": "piezas",
+   "key": "aprende",
+   "start": 12.093,
+   "end": 17.846,
+   "words": [
+    {
+     "t": "RED",
+     "start": 12.093,
+     "end": 12.247
+    },
+    {
+     "t": "aprende",
+     "start": 12.259,
+     "end": 12.652
+    },
+    {
+     "t": "el",
+     "start": 12.664,
+     "end": 12.756
+    },
+    {
+     "t": "estilo",
+     "start": 12.768,
+     "end": 13.173
+    },
+    {
+     "t": "y",
+     "start": 13.185,
+     "end": 13.289
+    },
+    {
+     "t": "el",
+     "start": 13.3,
+     "end": 13.405
+    },
+    {
+     "t": "oficio",
+     "start": 13.416,
+     "end": 13.787
+    },
+    {
+     "t": "edita",
+     "start": 13.798,
+     "end": 14.122
+    },
+    {
+     "t": "con",
+     "start": 14.134,
+     "end": 14.296
+    },
+    {
+     "t": "él",
+     "start": 14.307,
+     "end": 14.516
+    },
+    {
+     "t": "Si",
+     "start": 14.592,
+     "end": 14.676
+    },
+    {
+     "t": "no",
+     "start": 14.688,
+     "end": 14.815
+    },
+    {
+     "t": "hay",
+     "start": 14.827,
+     "end": 14.966
+    },
+    {
+     "t": "estilo",
+     "start": 14.977,
+     "end": 15.382
+    },
+    {
+     "t": "el",
+     "start": 15.512,
+     "end": 15.551
+    },
+    {
+     "t": "oficio",
+     "start": 15.562,
+     "end": 15.944
+    },
+    {
+     "t": "no",
+     "start": 15.956,
+     "end": 16.048
+    },
+    {
+     "t": "inventa",
+     "start": 16.06,
+     "end": 16.453
+    },
+    {
+     "t": "uno",
+     "start": 16.465,
+     "end": 16.835
+    },
+    {
+     "t": "y",
+     "start": 16.847,
+     "end": 16.951
+    },
+    {
+     "t": "te",
+     "start": 16.963,
+     "end": 17.067
+    },
+    {
+     "t": "devuelve",
+     "start": 17.078,
+     "end": 17.472
+    },
+    {
+     "t": "a",
+     "start": 17.483,
+     "end": 17.541
+    },
+    {
+     "t": "RED",
+     "start": 17.553,
+     "end": 17.807
+    }
+   ]
+  },
+  {
+   "id": "formato",
+   "visual": "formato",
+   "key": "formato",
+   "start": 17.846,
+   "end": 26.042,
+   "words": [
+    {
+     "t": "El",
+     "start": 17.846,
+     "end": 17.884
+    },
+    {
+     "t": "primer",
+     "start": 17.896,
+     "end": 18.174
+    },
+    {
+     "t": "paso",
+     "start": 18.185,
+     "end": 18.417
+    },
+    {
+     "t": "siempre",
+     "start": 18.428,
+     "end": 18.833
+    },
+    {
+     "t": "es",
+     "start": 18.845,
+     "end": 18.949
+    },
+    {
+     "t": "el",
+     "start": 18.961,
+     "end": 19.042
+    },
+    {
+     "t": "formato",
+     "start": 19.053,
+     "end": 19.493
+    },
+    {
+     "t": "reel",
+     "start": 19.64,
+     "end": 19.821
+    },
+    {
+     "t": "YouTube",
+     "start": 19.956,
+     "end": 20.308
+    },
+    {
+     "t": "sin",
+     "start": 20.381,
+     "end": 20.533
+    },
+    {
+     "t": "cara",
+     "start": 20.545,
+     "end": 20.846
+    },
+    {
+     "t": "motion",
+     "start": 21.004,
+     "end": 21.328
+    },
+    {
+     "t": "tutorial",
+     "start": 21.465,
+     "end": 21.88
+    },
+    {
+     "t": "anuncio",
+     "start": 22.04,
+     "end": 22.562
+    },
+    {
+     "t": "o",
+     "start": 22.574,
+     "end": 22.643
+    },
+    {
+     "t": "clase",
+     "start": 22.655,
+     "end": 23.06
+    },
+    {
+     "t": "Si",
+     "start": 23.133,
+     "end": 23.228
+    },
+    {
+     "t": "no",
+     "start": 23.24,
+     "end": 23.367
+    },
+    {
+     "t": "lo",
+     "start": 23.378,
+     "end": 23.471
+    },
+    {
+     "t": "dices",
+     "start": 23.483,
+     "end": 23.899
+    },
+    {
+     "t": "pregunta",
+     "start": 24.006,
+     "end": 24.389
+    },
+    {
+     "t": "y",
+     "start": 24.542,
+     "end": 24.572
+    },
+    {
+     "t": "de",
+     "start": 24.584,
+     "end": 24.676
+    },
+    {
+     "t": "ahí",
+     "start": 24.688,
+     "end": 24.873
+    },
+    {
+     "t": "salen",
+     "start": 24.884,
+     "end": 25.197
+    },
+    {
+     "t": "el",
+     "start": 25.209,
+     "end": 25.324
+    },
+    {
+     "t": "tamaño",
+     "start": 25.336,
+     "end": 25.81
+    },
+    {
+     "t": "y",
+     "start": 25.822,
+     "end": 25.903
+    },
+    {
+     "t": "la",
+     "start": 25.915,
+     "end": 26.03
+    }
+   ]
+  },
+  {
+   "id": "zona",
+   "visual": "zona",
+   "key": "zona",
+   "start": 26.042,
+   "end": 26.882,
+   "words": [
+    {
+     "t": "zona",
+     "start": 26.042,
+     "end": 26.308
+    },
+    {
+     "t": "segura",
+     "start": 26.32,
+     "end": 26.794
+    }
+   ]
+  },
+  {
+   "id": "lienzo",
+   "visual": "lienzo",
+   "key": "lienzo",
+   "start": 26.882,
+   "end": 37.427,
+   "words": [
+    {
+     "t": "Después",
+     "start": 26.882,
+     "end": 27.221
+    },
+    {
+     "t": "viene",
+     "start": 27.233,
+     "end": 27.569
+    },
+    {
+     "t": "el",
+     "start": 27.58,
+     "end": 27.65
+    },
+    {
+     "t": "lienzo",
+     "start": 27.661,
+     "end": 28.066
+    },
+    {
+     "t": "y",
+     "start": 28.163,
+     "end": 28.166
+    },
+    {
+     "t": "sin",
+     "start": 28.178,
+     "end": 28.386
+    },
+    {
+     "t": "lienzo",
+     "start": 28.398,
+     "end": 28.78
+    },
+    {
+     "t": "no",
+     "start": 28.791,
+     "end": 29.011
+    },
+    {
+     "t": "hay",
+     "start": 29.023,
+     "end": 29.139
+    },
+    {
+     "t": "síntesis",
+     "start": 29.15,
+     "end": 29.81
+    },
+    {
+     "t": "Figma",
+     "start": 29.89,
+     "end": 30.177
+    },
+    {
+     "t": "Wonder",
+     "start": 30.311,
+     "end": 30.677
+    },
+    {
+     "t": "Paper",
+     "start": 30.779,
+     "end": 31.046
+    },
+    {
+     "t": "Excalidraw",
+     "start": 31.187,
+     "end": 31.784
+    },
+    {
+     "t": "o",
+     "start": 31.796,
+     "end": 31.912
+    },
+    {
+     "t": "el",
+     "start": 31.923,
+     "end": 32.074
+    },
+    {
+     "t": "que",
+     "start": 32.085,
+     "end": 32.178
+    },
+    {
+     "t": "ya",
+     "start": 32.189,
+     "end": 32.409
+    },
+    {
+     "t": "uses",
+     "start": 32.421,
+     "end": 32.919
+    },
+    {
+     "t": "Ahí",
+     "start": 33.005,
+     "end": 33.176
+    },
+    {
+     "t": "agrupas",
+     "start": 33.187,
+     "end": 33.569
+    },
+    {
+     "t": "las",
+     "start": 33.581,
+     "end": 33.72
+    },
+    {
+     "t": "capturas",
+     "start": 33.731,
+     "end": 34.252
+    },
+    {
+     "t": "marcas",
+     "start": 34.368,
+     "end": 34.663
+    },
+    {
+     "t": "lo",
+     "start": 34.675,
+     "end": 34.756
+    },
+    {
+     "t": "que",
+     "start": 34.767,
+     "end": 34.883
+    },
+    {
+     "t": "te",
+     "start": 34.895,
+     "end": 34.976
+    },
+    {
+     "t": "gusta",
+     "start": 34.987,
+     "end": 35.334
+    },
+    {
+     "t": "y",
+     "start": 35.346,
+     "end": 35.427
+    },
+    {
+     "t": "acomodas",
+     "start": 35.439,
+     "end": 35.948
+    },
+    {
+     "t": "el",
+     "start": 35.959,
+     "end": 36.04
+    },
+    {
+     "t": "formato",
+     "start": 36.052,
+     "end": 36.492
+    },
+    {
+     "t": "en",
+     "start": 36.503,
+     "end": 36.608
+    },
+    {
+     "t": "tamaño",
+     "start": 36.619,
+     "end": 36.978
+    },
+    {
+     "t": "real",
+     "start": 36.99,
+     "end": 37.348
+    }
+   ]
+  },
+  {
+   "id": "mide",
+   "visual": "mide",
+   "key": "ritmo",
+   "start": 37.427,
+   "end": 44.738,
+   "words": [
+    {
+     "t": "RED",
+     "start": 37.427,
+     "end": 37.63
+    },
+    {
+     "t": "mide",
+     "start": 37.642,
+     "end": 37.839
+    },
+    {
+     "t": "las",
+     "start": 37.85,
+     "end": 37.989
+    },
+    {
+     "t": "referencias",
+     "start": 38.001,
+     "end": 38.684
+    },
+    {
+     "t": "cortes",
+     "start": 38.781,
+     "end": 39.22
+    },
+    {
+     "t": "color",
+     "start": 39.322,
+     "end": 39.637
+    },
+    {
+     "t": "texto",
+     "start": 39.748,
+     "end": 40.024
+    },
+    {
+     "t": "y",
+     "start": 40.035,
+     "end": 40.128
+    },
+    {
+     "t": "ritmo",
+     "start": 40.139,
+     "end": 40.521
+    },
+    {
+     "t": "Lo",
+     "start": 40.603,
+     "end": 40.652
+    },
+    {
+     "t": "que",
+     "start": 40.664,
+     "end": 40.756
+    },
+    {
+     "t": "no",
+     "start": 40.768,
+     "end": 40.883
+    },
+    {
+     "t": "puede",
+     "start": 40.895,
+     "end": 41.103
+    },
+    {
+     "t": "calcular",
+     "start": 41.115,
+     "end": 41.589
+    },
+    {
+     "t": "lo",
+     "start": 41.744,
+     "end": 41.808
+    },
+    {
+     "t": "dice",
+     "start": 41.819,
+     "end": 42.143
+    },
+    {
+     "t": "y",
+     "start": 42.272,
+     "end": 42.319
+    },
+    {
+     "t": "no",
+     "start": 42.331,
+     "end": 42.551
+    },
+    {
+     "t": "inventa",
+     "start": 42.563,
+     "end": 43.026
+    },
+    {
+     "t": "un",
+     "start": 43.037,
+     "end": 43.176
+    },
+    {
+     "t": "número",
+     "start": 43.188,
+     "end": 43.604
+    },
+    {
+     "t": "Tú",
+     "start": 43.675,
+     "end": 43.675
+    },
+    {
+     "t": "apruebas",
+     "start": 43.684,
+     "end": 44.09
+    },
+    {
+     "t": "el",
+     "start": 44.101,
+     "end": 44.205
+    },
+    {
+     "t": "estilo",
+     "start": 44.217,
+     "end": 44.645
+    },
+    {
+     "t": "y",
+     "start": 44.657,
+     "end": 44.726
+    }
+   ]
+  },
+  {
+   "id": "guarda",
+   "visual": "guarda",
+   "key": "guarda",
+   "start": 44.738,
+   "end": 49.012,
+   "words": [
+    {
+     "t": "se",
+     "start": 44.738,
+     "end": 44.877
+    },
+    {
+     "t": "guarda",
+     "start": 44.888,
+     "end": 45.235
+    },
+    {
+     "t": "en",
+     "start": 45.247,
+     "end": 45.293
+    },
+    {
+     "t": "la",
+     "start": 45.305,
+     "end": 45.386
+    },
+    {
+     "t": "carpeta",
+     "start": 45.397,
+     "end": 45.953
+    },
+    {
+     "t": "El",
+     "start": 46.039,
+     "end": 46.095
+    },
+    {
+     "t": "oficio",
+     "start": 46.106,
+     "end": 46.488
+    },
+    {
+     "t": "carga",
+     "start": 46.5,
+     "end": 46.778
+    },
+    {
+     "t": "las",
+     "start": 46.789,
+     "end": 46.951
+    },
+    {
+     "t": "reglas",
+     "start": 46.963,
+     "end": 47.391
+    },
+    {
+     "t": "el",
+     "start": 47.513,
+     "end": 47.575
+    },
+    {
+     "t": "formato",
+     "start": 47.587,
+     "end": 48.061
+    },
+    {
+     "t": "y",
+     "start": 48.073,
+     "end": 48.212
+    },
+    {
+     "t": "ese",
+     "start": 48.223,
+     "end": 48.385
+    },
+    {
+     "t": "estilo",
+     "start": 48.397,
+     "end": 48.825
+    },
+    {
+     "t": "y",
+     "start": 48.915,
+     "end": 49.001
+    }
+   ]
+  },
+  {
+   "id": "oficio",
+   "visual": "oficio",
+   "key": "edición",
+   "start": 49.012,
+   "end": 49.955,
+   "words": [
+    {
+     "t": "arma",
+     "start": 49.012,
+     "end": 49.29
+    },
+    {
+     "t": "la",
+     "start": 49.302,
+     "end": 49.394
+    },
+    {
+     "t": "edición",
+     "start": 49.406,
+     "end": 49.869
+    }
+   ]
+  },
+  {
+   "id": "arbol",
+   "visual": "arbol",
+   "key": "carpetas",
+   "start": 49.955,
+   "end": 53.992,
+   "words": [
+    {
+     "t": "Copias",
+     "start": 49.955,
+     "end": 50.215
+    },
+    {
+     "t": "dos",
+     "start": 50.227,
+     "end": 50.377
+    },
+    {
+     "t": "carpetas",
+     "start": 50.389,
+     "end": 50.91
+    },
+    {
+     "t": "en",
+     "start": 50.921,
+     "end": 51.037
+    },
+    {
+     "t": "punto",
+     "start": 51.048,
+     "end": 51.326
+    },
+    {
+     "t": "claude",
+     "start": 51.338,
+     "end": 51.616
+    },
+    {
+     "t": "skills",
+     "start": 51.627,
+     "end": 52.055
+    },
+    {
+     "t": "picassos",
+     "start": 52.159,
+     "end": 52.607
+    },
+    {
+     "t": "red",
+     "start": 52.619,
+     "end": 52.839
+    },
+    {
+     "t": "y",
+     "start": 52.85,
+     "end": 52.908
+    },
+    {
+     "t": "oficio",
+     "start": 52.92,
+     "end": 53.325
+    },
+    {
+     "t": "de",
+     "start": 53.337,
+     "end": 53.441
+    },
+    {
+     "t": "edición",
+     "start": 53.452,
+     "end": 53.904
+    }
+   ]
+  },
+  {
+   "id": "prompt",
+   "visual": "prompt",
+   "key": "prompt",
+   "start": 53.992,
+   "end": 57.742,
+   "words": [
+    {
+     "t": "Le",
+     "start": 53.992,
+     "end": 54.071
+    },
+    {
+     "t": "pegas",
+     "start": 54.082,
+     "end": 54.395
+    },
+    {
+     "t": "el",
+     "start": 54.406,
+     "end": 54.534
+    },
+    {
+     "t": "prompt",
+     "start": 54.545,
+     "end": 54.765
+    },
+    {
+     "t": "a",
+     "start": 54.777,
+     "end": 54.835
+    },
+    {
+     "t": "tu",
+     "start": 54.846,
+     "end": 54.985
+    },
+    {
+     "t": "IA",
+     "start": 54.997,
+     "end": 55.286
+    },
+    {
+     "t": "clonas",
+     "start": 55.409,
+     "end": 55.663
+    },
+    {
+     "t": "el",
+     "start": 55.675,
+     "end": 55.791
+    },
+    {
+     "t": "repo",
+     "start": 55.802,
+     "end": 56.091
+    },
+    {
+     "t": "y",
+     "start": 56.103,
+     "end": 56.196
+    },
+    {
+     "t": "arrancas",
+     "start": 56.207,
+     "end": 56.682
+    },
+    {
+     "t": "con",
+     "start": 56.693,
+     "end": 56.844
+    },
+    {
+     "t": "un",
+     "start": 56.855,
+     "end": 56.959
+    },
+    {
+     "t": "video",
+     "start": 56.971,
+     "end": 57.295
+    },
+    {
+     "t": "tuyo",
+     "start": 57.307,
+     "end": 57.665
+    }
+   ]
+  },
+  {
+   "id": "cierra",
+   "visual": "cierra",
+   "key": "entiende",
+   "start": 57.742,
+   "end": 60.456,
+   "words": [
+    {
+     "t": "Primero",
+     "start": 57.742,
+     "end": 57.967
+    },
+    {
+     "t": "se",
+     "start": 57.979,
+     "end": 58.094
+    },
+    {
+     "t": "entiende",
+     "start": 58.106,
+     "end": 58.523
+    },
+    {
+     "t": "después",
+     "start": 58.658,
+     "end": 59.037
+    },
+    {
+     "t": "se",
+     "start": 59.049,
+     "end": 59.165
+    },
+    {
+     "t": "edita",
+     "start": 59.176,
+     "end": 59.581
+    }
+   ]
+  }
+ ]
+}
