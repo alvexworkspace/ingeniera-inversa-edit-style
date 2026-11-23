@@ -28,11 +28,26 @@ Si el proyecto tiene una biblioteca de efectos, se usa antes de generar un sonid
 ## Imagen generada
 Se pide sin texto: los rótulos, las cifras y la marca los pone el editor. Cada generación cuesta: se dice el costo y se espera el OK del dueño antes de correrla. Nunca se genera la cara ni la voz de una persona real sin su permiso.
 
+## Assets y licencias
+Todo proyecto con material de terceros o generado lleva un `assets-licencias.md` en su carpeta, con una tabla: asset, origen (link o herramienta), licencia, autor si la pide (atribución) y en qué plano se usa.
+- Lo que no tiene una licencia clara no entra en un video que se venda o se publique.
+- Lo generado con IA anota la herramienta y su plan, porque los derechos comerciales dependen del plan.
+- Nada del creador estudiado entra en el render.
+
 ## Herramienta
 Se usa el motor que ya tenga el proyecto (código, editor de línea de tiempo o el que diga el estilo). Esta regla no impone un programa ni una licencia.
 
+**GPU en la nube.** Se usa solo con el OK del dueño para ese trabajo. Antes de rentar, se dice cuánto cuesta la hora y cuánto se calcula en total.
+- Al terminar, la instancia **se destruye**, no se detiene: una instancia detenida sigue cobrando el disco.
+- Se **verifica** que ya no existe (por ejemplo, con `vastai show instances` vacío).
+- Se **reporta** el costo real (horas por precio, o lo que dice la factura) junto con la entrega.
+- Si algo falla a mitad, la instancia se destruye igual antes de seguir probando.
+
 ## Pantalla limpia
 En ningún cuadro se ve un dato de otra persona, un correo, un chat privado ni una ruta del computador. La grabación de pantalla captura una sola ventana limpia.
+
+## Comparar con la referencia
+Cada etapa (look, plano, video) se muestra al lado del original, en el mismo cuadro y a la misma escala. Esa comparación es **interna**: no se publica, no se vende, no entra en un paquete ni en un portafolio. Los cuadros del original no se usan en ningún render. Se nombra el archivo con `INTERNO` (por ejemplo, `lado-a-lado-INTERNO.jpg`) y no va a git.
 
 ## Verificación antes de decir listo
 - Hoja de contactos del render.
@@ -52,3 +67,6 @@ La corrección va como regla con fecha al archivo que la cubre (el estilo, o `re
 - Cada generación con IA tuvo su costo dicho y el OK del dueño antes de correr.
 - No se ve ningún dato privado en pantalla.
 - Nada se publicó sin el OK del dueño.
+- Ninguna comparación con el original salió del uso interno.
+- Cada asset del render está en `assets-licencias.md` con su licencia.
+- Si hubo GPU en la nube, la instancia quedó destruida y verificada, y el costo se reportó.

@@ -10,8 +10,8 @@ y `comparar.py` las saca del ranking.
 |---|---|---|---|
 | 1. Diseño | paleta por plano, reparto 60-30-10 real, saturación, negros y blancos, texto en pantalla y su tamaño | | composición, foco, equilibrio, contraste, familias de letra y su uso, forma de las esquinas |
 | 2. Animación | cuadros estáticos y cuánto cambia el cuadro (con cuidado) | en uno, dos o tres: se cuentan los dibujos distintos de una parte del personaje en 12 cuadros seguidos | qué se anima, curva, escalonado, qué la dispara |
-| 3. Cámara | tiempo quieta, en empuje, alejamiento o paneo, velocidad del paneo y paralaje (con cuidado) | magnitud del empuje y su curva (regla sobre la hoja) | intención: tensión, revelación, seguir al personaje |
-| 4. Ilustración (si hay dibujo) | grosor y color del contorno, razón de oscuridad de la sombra, nitidez del borde (con cuidado) | | dirección de la luz, proporciones del personaje, nivel de acabado por capa |
+| 3. Cámara | tiempo quieta, en empuje, alejamiento o paneo, velocidad del paneo y paralaje (con cuidado) | magnitud del empuje y su curva (regla sobre la hoja); escala del personaje (% del ancho) y altura de cámara | intención: tensión, revelación, seguir al personaje |
+| 4. Ilustración (si hay dibujo) | grosor y color del contorno, razón de oscuridad de la sombra, nitidez del borde (con cuidado) | grosor y color de línea por capa (personaje, utilería en mano, utilería del set, fondo) | dirección de la luz, proporciones del personaje, nivel de acabado por capa |
 | 5. Sonido | volumen y pico | efectos por minuto y en qué palabra, de oído | qué evento lleva sonido y cuál no, música por tramo |
 | 6. Ritmo | | cortes duros, transiciones y su tipo, duración de plano, primeros 3 s | dónde respira y dónde acelera |
 | 7. Guion contra pantalla | | qué cambio cae en qué palabra: cuadros a -0,25, 0 y +0,25 s de la palabra clave | qué se muestra de lo que se dice: literal, metáfora, texto, gráfico o la cara; antes, en o después de la palabra |

@@ -1,5 +1,7 @@
 # Plantilla de `reels/rNN.md`
 
+Cada afirmación lleva CONFIRMADO, PROBABLE o NO CONFIRMADO, y su origen (medido, a ojo, fuente).
+
 ```
 # rNN (archivo, duración, fps)
 
@@ -33,6 +35,17 @@ Dónde corta en seco y dónde pasa sin cortar, y cómo.
 ## Cámara
 Por plano: quieta, empuje, alejamiento, paneo o giro, cuánto y con qué curva (de `medidas.json`), paralaje entre capas,
 y la intención (tensión, revelación, seguir al personaje).
+
+## Puesta en cuadro
+Por plano, en 3 a 5 videos:
+- Escala del personaje: el ancho de la cabeza y el del cuerpo visible como % del ancho del cuadro. Se dice cuál de los
+  dos se midió. Se da la mediana y el rango por tipo de plano, porque cambia de plano a plano.
+- Altura de cámara: baja (contrapicado), a la altura de los ojos o alta, y dónde corta el cuadro al personaje.
+- Capas de profundidad: si hay primer plano, plano medio y fondo, qué hay en cada uno y si hay profundidad de campo.
+- Línea: grosor en px a 1080 de ancho y color en hex, por capa: personaje, utilería en mano, utilería del set,
+  arquitectura y fondo. Se anota si adelgaza con la distancia.
+- Luz: contraste cálido contra frío (de dónde viene cada una), rim light, fuentes visibles (llamas, faroles) y si la
+  luz tiñe al personaje.
 
 ## Guion contra pantalla
 | Frase | Palabra que dispara | Qué se muestra (literal, metáfora, texto, gráfico, cara) | Antes, en o después de la palabra (ms, de `medidas.json`) | Cuánto dura |

@@ -13,13 +13,18 @@ El método se inspira en el video de Joseph sobre el estilo de Arthur Brooks. La
 
 También toma su método para volver un estilo una skill: todo parte del diseño, el tablero agrupa por categorías y cada animación se guarda en tres piezas. Las siete dimensiones, el vocabulario de diseño y las categorías están en `referencia/dimensiones.md`. Spec del medidor: `docs/2026-11-11-picassos-red-spec.md`.
 
-Cinco reglas:
+Seis reglas:
 - **Se estudia el estilo tal cual, y se adapta al final.** Lo que se copia es la lógica (cuándo va cada escena, curvas, tiempos, jerarquía), no la identidad de otro creador. Colores, firmas y lo que diga el dueño se pasan a su marca en el paso 5.
-- **Se mide, no se estima.** Animaciones cuadro a cuadro, colores en hex de los píxeles, sonido con el medidor de esta skill. Lo que sea estimado se dice.
+- **Cada dato dice qué tan seguro es.** Hay tres niveles:
+  - **CONFIRMADO:** lo dice una fuente pública del propio creador (con link), o se midió con una prueba que se puede repetir (con la ruta del script y del recorte).
+  - **PROBABLE:** varias pruebas independientes apuntan a lo mismo, pero no hay crédito ni firma.
+  - **NO CONFIRMADO:** es plausible, pero no se usa como hecho.
+
+  Lo que se mide a ojo dice "a ojo". Lo que dice un tercero queda "CONFIRMADO que lo dice, NO CONFIRMADO que sea cierto". No se elige herramienta, motor ni compra sobre un dato NO CONFIRMADO sin decirlo.
 - **El ojo del dueño va antes que el de Claude** (paso 5). El tablero es lo más importante del método.
 - **Ninguna regla del estilo vale hasta que el dueño la aprueba.**
 - **Lo que se puede calcular lo calcula el medidor, no la IA.** La IA entra donde hay juicio: qué tipo de escena es, por qué funciona y qué se muestra de lo que se dice. El comando es `python .claude/skills/picassos-red/scripts/rea/medir.py`.
-- **Sin formato no se reúnen referencias. Sin lienzo no hay síntesis.** Las dos cosas se preguntan. No se adivinan.
+- **Sin formato no se reúnen referencias. Sin lienzo y sin `pipeline.md` no hay síntesis.** El formato y el lienzo se preguntan. No se adivinan.
 
 ## Paso 0. Preguntar el formato
 
@@ -93,17 +98,41 @@ En el lienzo van dos cosas, a la vez:
 
 El dueño las recorre (30 a 45 minutos), marca las que le gustan y acomoda las piezas a mano. La síntesis pesa más lo marcado: así el estilo sale de su ojo y no solo del promedio de los videos.
 
+## Paso 3c. Cómo está hecho (pipeline y herramientas)
+
+Sin este paso no se sintetiza el estilo y no se elige motor. Medir cortes, color y letras no alcanza: si el motor de la réplica no puede dar la misma clase de imagen (luz, assets, personaje, voz), el resultado no se parece aunque los números cuadren.
+
+Aquí no se busca clonar a nadie, ni su personaje, ni su voz, ni sus historias, ni su nombre, y tampoco se usan sus archivos. Se busca un **stack equivalente**: la misma clase de imagen, hecha con recursos que tengan licencia.
+
+**Qué se averigua.** Cada punto lleva su nivel (ver "Cada dato dice qué tan seguro es"):
+1. **¿3D real, imagen plana con zoom o video IA?** Se hace la **prueba de planaridad con control**. Se compara el cuadro t contra t+0,33 s, se tapa la franja de subtítulos y se mide qué parte cabe en un solo plano (homografía con error menor a 1,5 px). Esa misma prueba se corre sobre un **control**, que es una foto con zoom y paneo, recodificada a la tasa de bits de la plataforma. Si el control da cerca de 100 % y la referencia da mucho menos, hay profundidad real. Se busca una órbita y se mira si el objeto muestra su otro lado.
+2. **¿Decorado persistente o generado por toma?** Se recorta el mismo objeto en tomas separadas (escudo, adornos, letreros) y se compara a resolución completa. Si es idéntico, es un set persistente. Si hay facetas planas de polígono, es un render.
+3. **Mapa de capas 2D contra 3D.** Por plano: qué es 3D con volumen, qué es 3D con línea, qué es telón pintado, qué es carta 2D dentro del 3D y qué personaje es carta. También si hay oclusión correcta (algo del set tapa al personaje), sombra de contacto y si la luz del set tiñe al personaje.
+4. **Fecha de inicio del formato e historia del canal.** Se listan todos los videos (`yt-dlp --flat-playlist`) y se busca el primero con este formato, el hueco antes del cambio y qué hacía el canal antes. Si pasó de casi plano a 3D en días, eso es una pista de su herramienta.
+5. **Pistas públicas.** About, descripciones, tags, links, redes, entrevistas y créditos de packs. Se revisan los comentarios (`yt-dlp --write-comments`): si alguien pregunta "¿qué app usas?", se anota si el autor contestó o no. Los tutoriales de imitadores cuentan como stacks de terceros y no revelan el original, salvo que el autor lo confirme.
+6. **Assets.** Se buscan packs por sus props distintivos. Si no hay una coincidencia visual demostrada, se escribe "no identificado" y no se pone el nombre del pack más parecido.
+7. **Voz, subtítulo y entrega.** Si la voz es grabada o TTS se separa de lo que el creador dice de sí mismo. Si se compara una voz, se hace con una huella de hablante y con controles. Se anotan la fuente del subtítulo (contra TTF candidatos) y el loudness.
+8. **Lo que engaña.** El tag `encoder=Lavf…` de un mp4 bajado viene del remux de `yt-dlp` y no es del creador. Los valores por defecto de fps de cada programa son un dato débil.
+
+**Salida:** `investigaciones/<fecha>-<estilo>/pipeline.md`, con:
+- tabla de conclusiones por punto (nivel, evidencia con ruta o link),
+- lo descartado, con el mismo nivel de evidencia,
+- un **stack equivalente recomendado**, que dice si hace falta GPU o algo de pago,
+- lo que sigue sin saberse.
+
+Si el motor del original queda NO CONFIRMADO, la réplica se presenta como "equivalente", nunca como "el mismo programa que usa el creador". Lo que se elige es lo que puede dar las mismas capas del mapa, no el motor que el creador "seguro" usa.
+
 ## Paso 4. Sintetizar y repartir
 
 `sintesis.md` junta todos los desarmes en el paquete del estilo (lookbook de color y letra con el método del acento, guía por categorías con sus animaciones, libro de reglas y la lógica guion contra pantalla):
 - **Tipos de escena:** cada uno con su nombre, cuándo se usa (qué dice el guion en ese momento), cómo se ve y en qué videos aparece. Los principios de la fuente se confirman, se corrigen o se agregan.
 - **La lógica guion contra escena:** por ejemplo, la de Arthur Brooks: cuando anuncia algo, su cara; cuando lo describe, se muestra.
-- **Reglas medidas:** fuentes, escala de tamaños, paleta en hex, texturas, curvas y duraciones, transiciones, sonido y ritmo (cambios por minuto, porcentaje de cara contra gráfico, los primeros 3 segundos).
+- **Reglas medidas:** fuentes, escala de tamaños, paleta en hex, texturas, curvas y duraciones, transiciones, sonido y ritmo (cambios por minuto, porcentaje de cara contra gráfico, los primeros 3 segundos), escala del personaje, altura de cámara, capas, línea por capa y contraste de luz. Cada regla lleva su nivel y su origen.
 - **Biblioteca de animaciones:** un índice de todas las hojas `rNN-aMM.jpg` por tipo de escena, con su duración y su curva. Es lo que Claude consulta después para no improvisar.
 
 Y se reparte en las tres capas de `oficio-de-edicion`: lo que haría cualquier editor va al oficio (`oficio/editor/` o `oficio/motion/`), lo que es gusto del dueño a `estilos/<nombre>.md` (se copia `estilos/PLANTILLA.md`) y un paso de un tipo de video que sirva a cualquier marca va a `formatos/`.
 
-La síntesis no se escribe si el paso 3b no tiene lienzo y marcas del dueño.
+La síntesis no se escribe si el paso 3b no tiene lienzo y marcas del dueño, ni si falta el `pipeline.md` del paso 3c.
 
 ## Paso 5. La decisión del dueño sobre el lienzo
 
@@ -123,6 +152,9 @@ Lo aprobado va al archivo de estilo en `.claude/skills/oficio-de-edicion/estilos
 
 ## Paso 6. Llevarlo al oficio
 
+- **Primero un plano, el más difícil.** Antes de construir el resto, se elige el plano que más delata el método. Por ejemplo, una órbita que muestra el otro lado de un objeto, o un viaje de cámara entre capas. Ese plano se hace completo: primero sus cuadros fijos al lado de la referencia, y después un clip corto con su movimiento. Se mide con `comparar.py` y se pasa la prueba de planaridad del paso 3c sobre el clip propio.
+  - **Si no se parece, se para:** no se clona el video completo. Se vuelve al `pipeline.md` (otro asset, otra capa, otro motor) y se repite solo este plano.
+  - Solo con este plano aprobado por el dueño se pasa al resto.
 - **El destino del estilo es la carpeta de estilos del oficio,** no una skill nueva. Se copia `estilos/PLANTILLA.md` de `oficio-de-edicion`, se llena con lo aprobado (con fecha) y se agrega una fila a `estilos/README.md`.
 - **Si el dueño ya tiene motor,** cada pieza nueva entra con spec, constructor y una revisión antes de darla por buena. El motor es el que diga el estilo.
 - **Si no tiene motor,** el archivo de estilo igual alcanza: `oficio-de-edicion` edita con oficio, formato y ese estilo.
@@ -147,7 +179,7 @@ Para cada video nuevo:
 
 ## Lo que entrega
 
-- `investigaciones/<fecha>-<estilo>/`: mapa (con el formato del paso 0), medidas, desarmes, capturas, hojas, `lienzo.md` si no hubo conector, y síntesis.
+- `investigaciones/<fecha>-<estilo>/`: mapa (con el formato del paso 0), medidas, desarmes, capturas, hojas, `lienzo.md` si no hubo conector, `pipeline.md` y síntesis.
 - El lienzo: tablero de capturas y formatos en tamaño real, con lo que el dueño acomodó medido en una tabla.
 - El estilo en `.claude/skills/oficio-de-edicion/estilos/<nombre>.md` y la decisión en el registro de decisiones del proyecto.
 - Las piezas nuevas en el motor, si hay motor.
@@ -156,6 +188,8 @@ Para cada video nuevo:
 
 - El formato se preguntó antes de reunir referencias y quedó escrito en `mapa.md`, con su tamaño y su zona segura.
 - `investigaciones/<fecha>-<estilo>/` tiene `mapa.md`, `medidas/` de `scripts/rea/medir.py`, un `reels/rNN.md` por cada video, las capturas, las hojas de cuadros y `sintesis.md`.
+- Existe `pipeline.md` con cada punto graduado, y el motor de la réplica se eligió después de él.
+- El plano más difícil pasó la prueba y el dueño lo aprobó antes de construir el resto.
 - Hubo lienzo (conector, o `lienzo.md` más las imágenes) antes de la síntesis. El dueño marcó sus favoritas y acomodó los formatos a tamaño real.
 - Lo aprendido quedó repartido en las tres capas de `oficio-de-edicion` (oficio, formato y estilo).
 - El render propio pasó por `scripts/rea/comparar.py` contra la referencia.
