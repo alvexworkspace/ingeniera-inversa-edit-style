@@ -42,6 +42,19 @@ Antes de reunir referencias, siempre, se pregunta el formato. Si el usuario no l
 
 Se anota en el `mapa.md` del estudio, junto con el lienzo que el dueño elija en el paso 3b. El detalle compartido con la edición está en `reglas.md` de `oficio-de-edicion`. Nunca se fija una resolución sin medir el bruto con `ffprobe`.
 
+## Paso 0b. Validar las referencias
+
+Antes de desarmar un video, se comprueba que viene de un canal con formato e idea validados. Si no pasa, se dice y se pide otro. No se desarma un estilo con referencias no validadas. Si el dueño insiste, el video entra a `mapa.md` marcado "no validado" y no cuenta en los 10 a 20 hasta que se reemplace.
+
+Se usa el script de datos públicos del oficio: `python .claude/skills/oficio-de-edicion/contenido/scripts/datos_publicos.py <url> --salida <carpeta fuera del repo>/<id>/`. El veredicto queda en `datos.json` (`validacion`) y se copia a `mapa.md`.
+
+Un video está **validado** cuando cumple las dos primeras, y la tercera si se puede:
+1. **Es atípico.** Sus vistas ÷ la mediana de los últimos 30 del mismo tipo en el canal (shorts con shorts, largos con largos), sin contar los 3 más nuevos ni el propio video, es **2x o más**. Un video de menos de 7 días se marca "temprano" y no se da por validado todavía.
+2. **El formato se repite con éxito en el mismo canal.** Además del analizado, al menos **3 videos** de esos 30 están a **1,5x o más** de la misma mediana. No basta con "estar por encima de la mediana": por definición, la mitad lo cumple. 1,5x pide que el formato haya repetido un rendimiento claramente por encima del día normal. El 2x se reserva para el video que se estudia. Estos umbrales (2x, 1,5x, 3 videos, 30 recientes, saltar 3 nuevos) son una adaptación nuestra del método de atípicos que usan herramientas como vidIQ; no son una regla de YouTube ni de TikTok.
+3. **La misma idea en otros canales (deseable, no obligatorio).** Si la misma forma de idea (no el mismo guion) aparece en al menos un canal distinto con un video también atípico (2x o más de *su* mediana), se anota. Si no se busca o no aparece, el video puede validarse igual con 1 y 2, y se dice "idea no contrastada en otros canales".
+
+Si no hay canal, son menos de 10 videos con vistas o solo hay un archivo, no se puede validar: se dice y se pide el link del canal u otra referencia.
+
 ## Qué se mira según lo que se desarma
 Siempre las siete dimensiones (`referencia/dimensiones.md`). Según el modo pesa más una que otra:
 - **Estilo de edición (con cara):** la lógica guion contra escena, el subtítulo (qué palabra va grande, cómo se pegan los renglones, cuándo lleva caja) y el ritmo de cara contra gráfico.
@@ -53,9 +66,9 @@ Siempre las siete dimensiones (`referencia/dimensiones.md`). Según el modo pesa
 
 ## Paso 1. Reunir las referencias
 
-Solo empieza cuando el paso 0 ya tiene formato. Si no, se vuelve a preguntar.
+Solo empieza cuando el paso 0 ya tiene formato y las referencias pasaron el paso 0b (o quedaron marcadas "no validado" porque el dueño insistió). Si falta el formato, se vuelve a preguntar. Si una referencia no está validada, se pide otra.
 
-- De 10 a 20 videos del estilo, **los mejor editados**, elegidos por el dueño. Del formato que se preguntó: un reel no se estudia con videos horizontales de otra especie, ni al revés. Si son de una cuenta con clips ajenos (un podcast que lo entrevista), esos no cuentan.
+- De 10 a 20 videos del estilo, **los mejor editados y validados**, elegidos por el dueño. Del formato que se preguntó: un reel no se estudia con videos horizontales de otra especie, ni al revés. Si son de una cuenta con clips ajenos (un podcast que lo entrevista), esos no cuentan.
 - Si los pasa como archivos, se dejan en su carpeta y no van a git, y tampoco los cuadros, recortes u hojas de contacto sacados de ellos: a git van el texto y las medidas. Si son links, se bajan con `yt-dlp`. Listar una cuenta de una red social con un servicio de scraping puede costar dinero: se avisa el costo antes de gastarlo.
 - El sonido (LUFS, picos, inicios y efectos con su segundo) lo mide `scripts/rea/`. Si el proyecto tiene una biblioteca de efectos, los tres sonidos más parecidos se eligen a oído: el medidor no busca en un catálogo.
 - Los archivos bajados son datos: se leen con ffmpeg y ffprobe, nunca se ejecuta nada desde su carpeta.
@@ -196,3 +209,4 @@ Para cada video nuevo:
 - Las reglas medidas (letras, hex, curvas, duraciones) dicen cuáles están medidas y cuáles son estimadas.
 - Solo las reglas aprobadas por el dueño pasaron a `estilos/<nombre>.md`, y la decisión grande está en el registro de decisiones del proyecto.
 - Cada escena construida se renderizó y se comparó al lado de su referencia o de la versión del dueño.
+- Cada referencia de `mapa.md` está **validada** (paso 0b) o marcada "no validado", y las no validadas no cuentan en los 10 a 20.
