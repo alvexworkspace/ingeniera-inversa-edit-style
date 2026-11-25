@@ -1,6 +1,6 @@
 ---
 name: oficio-de-edicion
-description: La puerta de todo video, en tres capas (oficio, formato y estilo). Úsala con "edita este reel", brutos, un faceless, motion, un tutorial, un anuncio, una clase de curso o un video de YouTube, o para probar otro estilo. Si no hay estilo, pide Picasso's RED.
+description: La puerta de todo video, en tres capas (oficio, formato y estilo). Úsala con "edita este reel", brutos, un faceless, motion, un tutorial, un anuncio, una clase de curso o un video de YouTube, o para probar otro estilo. También con "por qué funcionó este video" o "cómo replico este video": eso está en contenido/. Si no hay estilo, pide Picasso's RED.
 ---
 
 # Oficio de edición
@@ -45,6 +45,11 @@ La resolución no se fija sin medir el bruto con `ffprobe`. Las zonas seguras es
 
 Si delegas en un subagente, ponle en el brief la ruta de esta skill, del formato y del estilo, porque la puerta no le llega sola.
 
+## Por qué funcionó un video
+Si traen uno o más videos que funcionaron y preguntan por qué o cómo replicarlos, se abre `contenido/README.md`. Explica la idea, el empaque, el gancho, la estructura y los comentarios, y entrega un `analisis-video.md` por video que termina en "Cómo replicarlo".
+- Solo se analiza para replicar un video **validado**: es un atípico (2x o más de la mediana del canal) y el formato se repite con éxito en ese canal (al menos 3 videos recientes del mismo tipo a 1,5x o más). El detalle y los umbrales están en `contenido/README.md`. Si no pasa, se dice y se pide otro, o el análisis se marca **no validado**.
+- Contenido es qué se dice y por qué se vio. Cómo se ve y suena es estilo, y lo desarma Picasso's RED. Si piden las dos cosas, primero contenido y después el RED con los mismos videos, siempre que estén validados.
+
 ## El storyboard: la puerta antes del render
 Todo video pasa por aquí antes del render completo, en cualquier formato:
 - **Son cuadros reales del video,** sacados del motor sin renderizar el corte final: uno por toma o por frase, con lo que se dice y lo que se ve. Un texto o una tabla sola no cuenta como storyboard.
@@ -54,7 +59,7 @@ Todo video pasa por aquí antes del render completo, en cualquier formato:
 
 ## Lo que no es de esta skill
 - **Crear el estilo desde referencias:** Picasso's RED.
-- **El guion y el texto de publicación:** el flujo de escritura del proyecto.
+- **El guion y el texto de publicación:** el flujo de escritura del proyecto. `contenido/` solo entrega el análisis y la lógica que se puede repetir.
 - **Publicar:** esta skill entrega el video. Nada se publica sin el OK del dueño en el chat.
 
 ## Dónde se guarda lo que se aprende

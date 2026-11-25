@@ -3,6 +3,9 @@
 ```
 # rNN (archivo, duración, fps)
 
+## Validación
+Canal, puntaje atípico, videos del mismo formato a 1,5x o más (de 30 recientes), idea en otros canales. Estado: validado / no validado. Si es no validado, no cuenta en los 10 a 20.
+
 ## Guion
 Transcripción con tiempos (por frase). Herramienta usada.
 
