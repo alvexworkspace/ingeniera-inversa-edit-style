@@ -47,6 +47,7 @@ Si delegas en un subagente, ponle en el brief la ruta de esta skill, del formato
 
 ## El storyboard: la puerta antes del render
 Todo video pasa por aquí antes del render completo, en cualquier formato:
+- **Primero el look, después el video.** Cuando el estilo es nuevo o cambia (otro set, otro personaje, otra línea), se muestran 2 o 3 cuadros fijos del look final, al lado de la referencia, antes del storyboard completo. No se renderiza ningún video, ni siquiera un clip de prueba, hasta que el dueño apruebe el look en el chat. Si da otra corrección, se vuelve a cuadros fijos.
 - **Son cuadros reales del video,** sacados del motor sin renderizar el corte final: uno por toma o por frase, con lo que se dice y lo que se ve. Un texto o una tabla sola no cuenta como storyboard.
 - **Se le muestran al dueño en el lienzo** que use el proyecto (Figma, Wonder, Paper, Excalidraw o el que ya tenga), no como archivos sueltos. Si hay un MCP o un conector de esa herramienta, se usa. Si no, se exportan los cuadros y una guía para armar la página a mano.
 - **El dueño marca cada cuadro** como bien o cambia. Se corrige y se vuelve a mostrar hasta que lo apruebe. Solo entonces se renderiza.
@@ -65,7 +66,7 @@ Todo video pasa por aquí antes del render completo, en cualquier formato:
 
 ## Terminado cuando
 - Se cargaron `reglas.md`, el formato que tocaba y un solo estilo, o se dijo que no hay estilo y se pasó por Picasso's RED.
-- El dueño aprobó el storyboard de cuadros reales antes del render.
+- El dueño aprobó el look en cuadros fijos y el storyboard de cuadros reales antes de cualquier render.
 - El video pasó la verificación de su formato y la de `reglas.md`.
 - Lo que el dueño aprobó o corrigió quedó en su estilo, con fecha.
 - Nada se publicó sin el OK del dueño en el chat.
