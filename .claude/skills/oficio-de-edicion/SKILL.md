@@ -55,7 +55,8 @@ Todo video pasa por aquí antes del render completo, en cualquier formato:
 - **Primero el look, después el video.** Cuando el estilo es nuevo o cambia (otro set, otro personaje, otra línea), se muestran 2 o 3 cuadros fijos del look final, al lado de la referencia, antes del storyboard completo. No se renderiza ningún video, ni siquiera un clip de prueba, hasta que el dueño apruebe el look en el chat. Si da otra corrección, se vuelve a cuadros fijos.
 - **Son cuadros reales del video,** sacados del motor sin renderizar el corte final: uno por toma o por frase, con lo que se dice y lo que se ve. Un texto o una tabla sola no cuenta como storyboard.
 - **Se le muestran al dueño en el lienzo** que use el proyecto (Figma, Wonder, Paper, Excalidraw o el que ya tenga), no como archivos sueltos. Si hay un MCP o un conector de esa herramienta, se usa. Si no, se exportan los cuadros y una guía para armar la página a mano.
-- **El dueño marca cada cuadro** como bien o cambia. Se corrige y se vuelve a mostrar hasta que lo apruebe. Solo entonces se renderiza.
+- **El dueño marca cada cuadro** como bien o cambia. Se corrige y se vuelve a mostrar hasta que lo apruebe. Solo entonces se renderiza. Cada corrección nombra el segundo (o el cuadro), qué está mal y cómo debería verse, o manda una captura de ese instante. No se pide "rehaz el video entero".
+- **Antes del render largo** se revisan capturas de los momentos clave. El motor que escribe el código no sustituye esa mirada "viendo" el video a puro screenshot en su propio contexto: eso suele ser caro y flojo. Si hace falta un crítico de visión, es un paso aparte, o el dueño en el lienzo.
 - **Si el estilo no tiene un motor que saque cuadros,** el storyboard se arma en el lienzo con el estilo cargado.
 
 ## Lo que no es de esta skill

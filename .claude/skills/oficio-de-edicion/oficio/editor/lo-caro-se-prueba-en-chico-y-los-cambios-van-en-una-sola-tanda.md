@@ -16,12 +16,13 @@ El costo de una iteración es el render y la atención de quien revisa: corregir
 ## Funciona
 
 - Aprobar la apertura antes de animar el resto, y por fases en un video largo.
-- Ver el borrador completo antes de anotar nada, y mandar una lista única de cambios.
+- Ver el borrador completo antes de anotar nada, y mandar una lista única de cambios. Cada ítem nombra el segundo (o el cuadro), qué está mal y cómo debería verse.
 - Mostrar la tabla de sonido antes del master y aprobar ahí.
 
 ## No funciona
 
 - Comentar cambios en cuanto se ve el primer cuadro, antes de ver el conjunto.
+- Pedir que se rehaga "todo el video" sin señalar momentos: gasta el render y suele romper lo que ya estaba bien.
 - Mostrar solo el resultado final mezclado, donde una falla de sonido obliga a rehacerlo todo.
 - Pedir una pieza de prueba tan grande que equivale al trabajo completo.
 
