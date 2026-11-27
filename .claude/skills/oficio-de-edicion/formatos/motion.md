@@ -3,7 +3,7 @@
 Video animado, con o sin voz: un explicativo, una cápsula, un inserto dentro de un reel. El tamaño es el del lugar donde se publica.
 
 ## Pasos
-1. **El guion primero, y la voz se graba antes de animar:** una frase de la voz, una escena (`oficio/motion/una-frase-de-la-voz-una-escena-y-la-locucion-se-escribe-primero.md`).
+1. **El guion primero, y la voz se graba antes de animar:** una frase de la voz, una escena (`oficio/motion/una-frase-de-la-voz-una-escena-y-la-locucion-se-escribe-primero.md`). La locución se transcribe con tiempos de palabra: cada entrada, color o movimiento se pega a la palabra en la que se dice.
 2. **La referencia se mide en una tabla** y da la meta del primer render (`oficio/motion/la-referencia-se-mide-en-una-tabla-y-da-la-meta-del-primer-render.md`). Si el estilo salió de Picasso's RED, esa tabla ya está en el estudio.
 3. **Lienzo,** un cuadro por frase, con el estilo cargado (letras, colores y fondos). Figma, Wonder, Paper, Excalidraw o el que use el proyecto. Si hay MCP o conector, se usa. Si no, se exportan los cuadros y una guía para armarlo a mano.
 4. **Animar con el motor del proyecto,** ajustado a la grabación. El estilo dice cuál es. No se impone un programa.

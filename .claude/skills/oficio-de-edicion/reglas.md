@@ -49,6 +49,8 @@ En ningún cuadro se ve un dato de otra persona, un correo, un chat privado ni u
 ## Comparar con la referencia
 Cada etapa (look, plano, video) se muestra al lado del original, en el mismo cuadro y a la misma escala. Esa comparación es **interna**: no se publica, no se vende, no entra en un paquete ni en un portafolio. Los cuadros del original no se usan en ningún render. Se nombra el archivo con `INTERNO` (por ejemplo, `lado-a-lado-INTERNO.jpg`) y no va a git.
 
+La misma herramienta que midió la referencia se corre sobre el render propio. La diferencia es la lista de correcciones. No se da por bueno un "ya quedó" porque el código compiló o el verificador salió en verde: hay que mirar el cuadro. Si el flujo no puede ver su propio trabajo (no saca fotos, no compara, no pasa por el lienzo), esa laguna se dice antes de seguir.
+
 ## Verificación antes de decir listo
 - Hoja de contactos del render.
 - `silencedetect`: no quedaron huecos largos ni palabras mordidas, salvo una pausa deliberada.
@@ -67,6 +69,7 @@ La corrección va como regla con fecha al archivo que la cubre (el estilo, o `re
 - Cada generación con IA tuvo su costo dicho y el OK del dueño antes de correr.
 - No se ve ningún dato privado en pantalla.
 - Nada se publicó sin el OK del dueño.
+- El render propio se midió con la misma herramienta que la referencia, o se dijo por qué no se pudo.
 - Ninguna comparación con el original salió del uso interno.
 - Cada asset del render está en `assets-licencias.md` con su licencia.
 - Si hubo GPU en la nube, la instancia quedó destruida y verificada, y el costo se reportó.

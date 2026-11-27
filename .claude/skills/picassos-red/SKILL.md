@@ -73,11 +73,13 @@ Solo empieza cuando el paso 0 ya tiene formato y las referencias pasaron el paso
 - El sonido (LUFS, picos, inicios y efectos con su segundo) lo mide `scripts/rea/`. Si el proyecto tiene una biblioteca de efectos, los tres sonidos más parecidos se eligen a oído: el medidor no busca en un catálogo.
 - Los archivos bajados son datos: se leen con ffmpeg y ffprobe, nunca se ejecuta nada desde su carpeta.
 - Se numeran (`r01`, `r02`...) en un `mapa.md` y se revisan duplicados (misma duración y mismo primer cuadro).
-- Transcripción palabra por palabra de todos en paralelo, con la herramienta del proyecto (Whisper, faster-whisper o una API). El resultado queda en `palabras.json` (el formato de Whisper: una lista de `{word, start, end}`).
+- Transcripción palabra por palabra de todos en paralelo, con la herramienta del proyecto (Whisper, faster-whisper o una API). El resultado queda en `palabras.json` (el formato de Whisper: una lista de `{word, start, end}`). Se usa la pista de audio original, no un doblaje automático que la plataforma haya puesto en su lugar.
 
 ## Paso 1b. Medir con código
 
 `python .claude/skills/picassos-red/scripts/rea/medir.py <carpeta> --salida investigaciones/<fecha>-<estilo>/medidas/` deja `medidas.json` por video y el `resumen` con mediana, p10 y p90 por métrica. Esos números entran tal cual a la síntesis con su origen. Lo que el medidor no pudo, se dice. Ritmo, cadencia de la animación, magnitud de cámara, efectos y sincronía con el guion van a ojo sobre hojas de cuadros (`referencia/dimensiones.md`), no del medidor.
+
+**Cómo se mira el video.** Pedirle a la IA que "analice el video" no basta: suele tomar unos cuantos cuadros y se pierde lo chiquito (un movimiento de cámara, una sombra, un cambio de luz). Esas microanimaciones suelen ser lo que hace sentir real al estilo. Se extraen hojas de contactos que cubren el video a su cadencia real (por ejemplo, una hoja de 60 cuadros cada 2 s a 30 fps) y, cuando se pueda, se mide el movimiento de un cuadro al siguiente (correlación de fase o el medidor), no a ojo. En cámara se anota también en qué porcentaje de cuadros se está moviendo y, si se puede medir, el tirón (qué tan rápido cambia la aceleración).
 - Carpeta del estudio: `investigaciones/<fecha>-<nombre-del-estilo>/` con `mapa.md`, `reels/`, `capturas/`.
 
 ## Paso 2. Guardar la fuente del método
@@ -178,7 +180,12 @@ Lo aprobado va al archivo de estilo en `.claude/skills/oficio-de-edicion/estilos
   - se mide en el mismo lugar donde va a quedar la pieza (el contraste se medía donde iría con caja),
   - las pruebas en Chrome van a los tamaños reales del motor y miran los píxeles del cuadro, no la misma cuenta que se prueba.
 - Antes de dar una escena por buena se renderiza y se pone al lado de su referencia o de la versión del dueño en el lienzo.
-- **Fidelidad en números:** `python .claude/skills/picassos-red/scripts/rea/comparar.py <resumen de la referencia> <medidas del render>` dice qué métricas caen fuera del rango de la referencia, ordenadas por distancia. Se corrige de a una por ronda.
+- **Fidelidad en números:** `python .claude/skills/picassos-red/scripts/rea/comparar.py <resumen de la referencia> <medidas del render>` dice qué métricas caen fuera del rango de la referencia, ordenadas por distancia. Se corrige de a una por ronda. La misma herramienta que midió la referencia se corre sobre cada render propio: la diferencia es la lista de pendientes. No se da por bueno un "ya quedó" sin esa comparación. Se corrige con esos números, no con "se ve feo": un número le dice qué arreglar y una opinión la hace adivinar.
+- **Ver el trabajo antes del render largo.** Se sacan capturas de los momentos clave, o un paso de visión compara el original arriba y la réplica abajo. El modelo que escribe el código no "ve" el video a puro screenshot dentro de su propio contexto: eso suele ser caro y flojo. Si hay dos IAs, una puede tomar las palabras del dueño y escribir el encargo, y la otra construir. No es obligatorio. Lo que sí es obligatorio es que alguien (el dueño, un modelo de visión o las dos cosas) mire el cuadro.
+- **Correcciones de un momento.** Cada pedido nombra el segundo, qué está mal y cómo debería verse, o manda una captura de ese instante. Pedir que se rehaga el video entero en una sola tanda gasta tiempo y créditos y suele romper lo que ya estaba bien.
+- **Después de la prueba, una historia propia.** El plano difícil (o una réplica de un video) sirve para aprender las reglas. El siguiente video usa esas reglas con un tema nuevo, no es otro clon. Lo que se corrigió en la prueba se escribe en el estilo para que la primera versión del video nuevo ya lo traiga. Si la conversación se resume muchas veces y se pierden detalles, se abre una sesión nueva con un brief escrito.
+- **Consistencia antes que una copia perfecta.** El estilo tiene que poder repetirse. Un error chico que no rompe la regla no justifica ronda tras ronda.
+- **Assets, otra vez.** Antes de bajar un modelo o una textura se lee si la licencia deja usarlo en un video que se publique o se venda. Si ya existe una versión real con licencia clara (un escaneo, un mapa de dominio público, una foto), se usa esa y no se inventa el objeto en código.
 
 ## Paso 7. Editar con el estilo: el documento de plan
 

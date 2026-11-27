@@ -9,7 +9,7 @@ Cada afirmación lleva CONFIRMADO, PROBABLE o NO CONFIRMADO, y su origen (medido
 Canal, puntaje atípico, videos del mismo formato a 1,5x o más (de 30 recientes), idea en otros canales. Estado: validado / no validado. Si es no validado, no cuenta en los 10 a 20.
 
 ## Guion
-Transcripción con tiempos (por frase). Herramienta usada.
+Transcripción con tiempos (por frase). Herramienta usada. Idioma de la pista que se transcribió (la original, no un doblaje automático).
 
 ## Escenas
 | # | Inicio a fin | Tipo | Qué se dice | Qué se ve | Por qué ahí (anuncia, describe, remata...) |
@@ -37,7 +37,9 @@ Dónde corta en seco y dónde pasa sin cortar, y cómo.
 
 ## Cámara
 Por plano: quieta, empuje, alejamiento, paneo o giro, cuánto y con qué curva (de `medidas.json`), paralaje entre capas,
-y la intención (tensión, revelación, seguir al personaje).
+y la intención (tensión, revelación, seguir al personaje). En el video entero: en qué porcentaje de cuadros se mueve
+la cámara, si se queda en un solo eje o hace órbita, y el tirón (cambio de aceleración) si se pudo medir. Esas mismas
+métricas se vuelven a tomar en el render propio.
 
 ## Puesta en cuadro
 Por plano, en 3 a 5 videos:
@@ -70,6 +72,7 @@ paralaje, nada), cuántas palabras hay en pantalla a la vez y si el texto lleva 
 
 ## Ritmo
 % del tiempo en la cara (o en la voz en off) contra gráficos, cambios de escena por minuto, qué pasa en los primeros 3 s.
+Cadencia de las hojas de contactos (cada cuántos segundos se cubrieron todos los cuadros a la tasa del video).
 
 ## Lo más copiable
 Tres cosas de este video que el estilo debería tomar, y qué choca con la marca del dueño.
